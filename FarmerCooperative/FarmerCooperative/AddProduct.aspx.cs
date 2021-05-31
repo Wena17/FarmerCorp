@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace FarmerCooperative
 {
-    public partial class Signup : System.Web.UI.Page
+    public partial class AddProduct : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +17,21 @@ namespace FarmerCooperative
         protected void btnclose_Click(object sender, EventArgs e)
         {
             Response.Redirect("homepage.aspx");
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void clearScreen().
+        {
+            txtProductName.Text = " ";
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,5 +13,10 @@ namespace FarmerCooperative
         {
 
         }
+
+        protected void btnclose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("homepage.aspx");
+        }
     }
 }

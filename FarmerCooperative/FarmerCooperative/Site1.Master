@@ -32,9 +32,9 @@
                         <li class="nav-item px-lg-4" id="liSignup"><a class="nav-link text-uppercase" href="signup.aspx">Sign up</a></li>
                         <li class="nav-item px-lg-4" id="liLogin"><a class="nav-link text-uppercase" href="login.aspx">Login</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="homepage.aspx">Home</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.aspx">About</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="product.aspx">Products</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="#">Store</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.aspx">About</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="addproduct.aspx">Add Product</a></li>
                     </ul>
                     
                 </div>
@@ -48,7 +48,7 @@
  
            <!-- Footer -->        
             <footer class="footer text-faded text-center py-5">
-                <div class="container"><p class="m-0 small">Copyright &copy; Your Website 2021</p></div>
+                <div class="container"><p class="m-0 small">Copyright &copy; Farmer's Cooperative Platform</p></div>
             </footer>
         <!-- ./Footer -->
 </div>

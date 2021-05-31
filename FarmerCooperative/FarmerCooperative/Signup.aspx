@@ -3,18 +3,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section about-heading">
+        <form runat="server">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 mx-auto">
                     <div class="card shadow-lg border-0 rounded-lg mb-4">
-                        <div class="card-header"><h3 class="text-center font-weight-light my-2">Sign up</h3></div>
-                        <div class="row">
-                            <div class="col">
-                                <hr />
+                        <div class="card-header">
+                            <div class="form-group d-flex justify-content-between">
+                                <h3 class="text-center font-weight-light my-2">&nbsp;</h3>  
+                                <h3 class="font-weight-light my-2">Sign up</h3>  
+                                <asp:Button class="btn btn-close" ID="btnclose" runat="server" CausesValidation="False" OnClick="btnclose_Click" />
                             </div>
                         </div>
                         <div class="card-body">
-                            <form runat="server">
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -93,15 +94,11 @@
                                             <asp:TextBox class="form-control" ID="txtZipcode" runat="server" placeholder="Zipcode"></asp:TextBox>
                                         </div>
                                     </div>
-                                </div>               
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="txtAddress">Address</label>
-                                            <asp:RequiredFieldValidator ID="rqrAddress" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                            <asp:TextBox class="form-control" ID="txtAddress" runat="server" placeholder="House #, Street, Barangay" TextMode="MultiLine" Rows="2"></asp:TextBox>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtAddress">Address</label>
+                                    <asp:RequiredFieldValidator ID="rqrAddress" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                    <asp:TextBox class="form-control" ID="txtAddress" runat="server" placeholder="House #, Street, Barangay" TextMode="MultiLine" Rows="2"></asp:TextBox>
                                 </div>
                                 <div class="row">
                                     <div class="col">
@@ -111,14 +108,14 @@
                                 <div class="form-group d-flex justify-content-center  mt-3 mb-3">
                                     <a class="btn btn-primary btn-lg" id="btnRegister" href="#">Sign up</a>
                                 </div>
-                            </form>
                         </div>
                         <div class="card-footer text-center">
-                            <div class="small"><a href="#">Already have an account?</a></div>
+                            <div class="small"><a href="login.aspx">Already have an account?</a></div>
                         </div>
                     </div>
                 </div>  
             </div>
         </div>
+       </form>
     </section>
 </asp:Content>
