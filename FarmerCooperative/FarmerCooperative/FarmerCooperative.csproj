@@ -81,11 +81,13 @@
     <Content Include="imgs\Farm.jpg" />
     <Content Include="imgs\favicon.ico" />
     <Content Include="imgs\freshly-harvested.jpg" />
+    <Content Include="imgs\fruits.jpg" />
     <Content Include="imgs\generaluser.png" />
     <Content Include="imgs\intro.jpg" />
     <Content Include="imgs\products-01.jpg" />
     <Content Include="imgs\products-02.jpg" />
     <Content Include="imgs\products-03.jpg" />
+    <Content Include="imgs\Veggies.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MyCSS\styles.css" />
     <Content Include="MyScript\scripts.js" />
