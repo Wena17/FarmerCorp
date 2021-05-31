@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="FarmerCooperative.Homepage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            font-size: large;
+        }
+        .auto-style2 {
+            font-size: large;
+            margin-bottom: 1rem;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section clearfix">
@@ -8,11 +17,11 @@
                     <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" width="100%" src="imgs/freshly-harvested.jpg" alt="..." />
                     <div class="intro-text left-0 text-center bg-faded p-5 rounded">
                         <h2 class="section-heading mb-4">
-                            <span class="section-heading-upper">Fresh PRODUCE</span>
-                            <span class="section-heading-lower">Worth PURCHASING</span>
+                            <span class="section-heading-upper">FRESH PRODUCE</span>
+                            <span class="section-heading-lower"> Locally Grown Foods</span>
                         </h2>
-                        <p class="mb-3">Every cup of our quality artisan coffee starts with locally sourced, hand picked ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning routine - we guarantee it!</p>
-                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="#!">Visit Us Today!</a></div>
+                        <p class="auto-style2">"Harnessing the full potential of the Local Farmers to ensure food security,achieve environmental sustainability, and drive economic opportunity. <br /><span class="auto-style1">By buying through us, <br /> YOU ARE SUPPORTING  <br /> <strong>Locally Grown Foods from our Locally Grown Farmers </strong>" </span> </p>
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="Product.aspx">Shop Now!</a></div>
                     </div>
                 </div>
             </div>
@@ -23,10 +32,10 @@
                     <div class="col-xl-9 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
                             <h2 class="section-heading mb-4">
-                                <span class="section-heading-upper">Our Promise</span>
-                                <span class="section-heading-lower">To You</span>
+                                <span class="section-heading-upper"></span>
+                                <span class="section-heading-lower">FARMER COOPERATIVE'S PLATFORM</span>
                             </h2>
-                            <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
+                            <p class="mb-0">Farmer Cooperative’s Platform believes that everyone should have reliable access to nutritious food. We connect people in the city to fresh food and high-quality local goods that support communities and farmers. We are a local social enterprise that promotes a more conscious way of producing, purchasing and consuming. We also advocate local agriculture, social entrepreneurship, people empowerment and environmentalism. </p>
                         </div>
                     </div>
                 </div>

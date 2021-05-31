@@ -8,14 +8,14 @@
                     <div class="product-item-title d-flex">
                         <div class="bg-faded p-5 d-flex ms-auto rounded">
                             <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">Blended to Perfection</span>
-                                <span class="section-heading-lower">Coffees & Teas</span>
+                                <span class="section-heading-upper">Fresh fruit, stay cool</span>
+                                <span class="section-heading-lower">FRUITS</span>
                             </h2>
                         </div>
                     </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imgs/products-01.jpg" alt="..." />
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imgs/fruits.jpg" alt="..." />
                     <div class="product-item-description d-flex me-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">We take pride in our work, and it shows. Every time you order a beverage from us, we guarantee that it will be an experience worth having. Whether it's our world famous Venezuelan Cappuccino, a refreshing iced herbal tea, or something as simple as a cup of speciality sourced black coffee, you will be coming back for more.</p></div>
+                        <div class="bg-faded p-5 rounded"><p class="mb-0"> Eating vegetables provides health benefits — people who eat more vegetables and fruits as part of an overall healthy diet are likely to have a reduced risk of some chronic diseases. Vegetables provide nutrients vital for health and maintenance of your body. </p></div>
                     </div>
                 </div>
             </div>
@@ -26,14 +26,14 @@
                     <div class="product-item-title d-flex">
                         <div class="bg-faded p-5 d-flex me-auto rounded">
                             <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">Delicious Treats, Good Eats</span>
-                                <span class="section-heading-lower">Bakery & Kitchen</span>
+                                <span class="section-heading-upper">Eat veggies, stay healthy</span>
+                                <span class="section-heading-lower">vEGETABLES</span>
                             </h2>
                         </div>
                     </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imgs/products-02.jpg" alt="..." />
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="imgs/Veggies.jpg" alt="..." />
                     <div class="product-item-description d-flex ms-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Our seasonal menu features delicious snacks, baked goods, and even full meals perfect for breakfast or lunchtime. We source our ingredients from local, oragnic farms whenever possible, alongside premium vendors for specialty goods.</p></div>
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Eating vegetables provides health benefits — people who eat more vegetables and fruits as part of an overall healthy diet are likely to have a reduced risk of some chronic diseases. Vegetables provide nutrients vital for health and maintenance of your body.</p></div>
                     </div>
                 </div>
             </div>
