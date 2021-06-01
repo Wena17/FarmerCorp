@@ -16,7 +16,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-<div class="container-fluid">
+    <form runat="server">
+        <div class="container-fluid">
        <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
                 <span class="site-heading-upper text-primary mb-3">&#x1f33e;Farmer Cooperative's Platform</span>
@@ -28,15 +29,38 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item px-lg-4" id="liSignup"><a class="nav-link text-uppercase" href="signup.aspx">Sign up</a></li>
-                        <li class="nav-item px-lg-4" id="liLogin"><a class="nav-link text-uppercase" href="login.aspx">Login</a></li>
+                    <ul id="regularBar" class="navbar-nav mr-auto">
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="homepage.aspx">Home</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="product.aspx">Products</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.aspx">About</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="addproduct.aspx">Add Product</a></li>
                     </ul>
-                    
+                    <ul class="navbar-nav">  
+                        <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="signup" runat="server" OnClick="signup_Click">Sign up</asp:LinkButton></li>
+                        <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="btnlogin" runat="server" OnClick="btnlogin_Click"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;&nbsp;Login</asp:LinkButton></li> 
+                    </ul>       
+                    <ul class="navbar-nav">    
+                        <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="btnLogout" runat="server" OnClick="btnLogout_Click">Log out</asp:LinkButton></li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton class="nav-link dropdown-toggle" ID="sellernavbarDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;Logged in</asp:LinkButton>
+                            <ul class="dropdown-menu" aria-labelledby="sellernavbarDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="product.aspx">All Products</a></li>
+                                <li><a class="dropdown-item" href="addproduct.aspx">Add Product</a></li>                                
+                                <li><a class="dropdown-item" href="#!">Sales</a></li>
+                            </ul>                            
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">    
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton class="nav-link dropdown-toggle" ID="buyerDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;Logged in</asp:LinkButton>
+                            <ul class="dropdown-menu" aria-labelledby="buyerDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Purchases</a></li>
+                            </ul>                            
+                        </li>
+                    </ul>
                 </div>
         </nav>
            <!-- Main Content Placeholder -->
@@ -52,6 +76,7 @@
             </footer>
         <!-- ./Footer -->
 </div>
+</form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section about-heading">
-        <form runat="server">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 mx-auto">
@@ -116,6 +115,5 @@
                 </div>  
             </div>
         </div>
-       </form>
     </section>
 </asp:Content>

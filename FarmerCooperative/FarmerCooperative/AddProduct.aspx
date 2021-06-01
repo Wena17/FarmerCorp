@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section about-heading">
-        <form runat="server">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -38,7 +37,7 @@
                                     <div class="form-group">
                                         <label class="col-form-label" for="txtPrice">Price</label>
                                         <asp:RequiredFieldValidator ID="rqrtxtPrice" runat="server" ErrorMessage="*Please enter the price*" ControlToValidate="txtPrice" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control py-4" ID="txtPrice" runat="server" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox class="form-control py-4" ID="txtPrice" runat="server" TextMode="Number" step="0.01"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -67,13 +66,12 @@
                         <div class="card-footer text-center">
                             <div class="form-group d-flex align-items-center justify-content-evenly mt-3 mb-3">
                                 <asp:Button class="btn btn-primary btn-lg" ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                <asp:Button class="btn btn-primary btn-lg" ID="btnCancel" runat="server" Text="Clear" CausesValidation="False" OnClick="btnCancel_Click" />
+                                <asp:Button class="btn btn-primary btn-lg" ID="btnClear" runat="server" Text="Clear" CausesValidation="False" OnClick="btnClear_Click" />
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
     </section>
 </asp:Content>

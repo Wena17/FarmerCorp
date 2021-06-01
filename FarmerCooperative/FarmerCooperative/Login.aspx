@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section about-heading">
-        <form runat="server">
         <div class="container">
             <div class="row justify-content-center">
             <div class="col-lg-5">
@@ -25,7 +24,7 @@
                                 <asp:TextBox class="form-control py-4" ID="txtPassword" runat="server" placeholder="•••••••••••••"  TextMode="Password"></asp:TextBox>
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-end mt-4 mb-0">
-                                <asp:Button class="btn btn-primary" ID="btnLogin" runat="server" Text="Login" />
+                                <asp:Button class="btn btn-primary" ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
                             </div>
                     </div>
                     <div class="card-footer text-center">
@@ -35,6 +34,5 @@
             </div>
         </div>
         </div>
-       </form>
     </section>
 </asp:Content>

@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace FarmerCooperative
 {
     public partial class AddProduct : System.Web.UI.Page
     {
+        string conProduct = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
         }
@@ -19,19 +28,20 @@ namespace FarmerCooperative
             Response.Redirect("homepage.aspx");
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void clearScreen().
+        public void clearScreen()
         {
             txtProductName.Text = " ";
+            txtType.Text = " ";
+            txtQuantity.Text = " ";
+            txtPrice.Text = " ";
+            txtHarvestDate.Text = " ";
+            txtExpiryDate.Text = " ";
+            txtAddress.Text = " ";
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        protected void btnClear_Click(object sender, EventArgs e)
         {
-
+            clearScreen();
         }
     }
 }

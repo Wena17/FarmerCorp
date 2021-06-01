@@ -18,15 +18,10 @@
                     <div class="intro-text left-0 text-center bg-faded p-5 rounded">
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper">FRESH PRODUCE</span>
-                            <span class="section-heading-lower"> Locally Grown Foods</span>
+                            <span class="section-heading-lower"> Locally Grown Food</span>
                         </h2>
-<<<<<<< HEAD
-                        <p class="mb-3">Every cup of our quality artisan coffee starts with locally sourced, hand picked ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning routine - we guarantee it!</p>
-                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="product.aspx">Shop Now!</a></div>
-=======
-                        <p class="auto-style2">"Harnessing the full potential of the Local Farmers to ensure food security,achieve environmental sustainability, and drive economic opportunity. <br /><span class="auto-style1">By buying through us, <br /> YOU ARE SUPPORTING  <br /> <strong>Locally Grown Foods from our Locally Grown Farmers </strong>" </span> </p>
+                        <p class="mb-3">Harnessing the full potential of the local farmers to ensure food security, achieve environmental sustainability, and drive economic opportunity. <br /><span class="auto-style1">BY BUYING THROUGH US <br /> YOU ARE SUPPORTING  <br /> <strong>Locally Grown Foods from our Local Farmers </strong> </span> </p>
                         <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="Product.aspx">Shop Now!</a></div>
->>>>>>> 373cf23e938c06bd7d588b0aa266dded9bc515d6
                     </div>
                 </div>
             </div>
