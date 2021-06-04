@@ -24,6 +24,42 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.Button btnclose;
 
         /// <summary>
+        /// uploadStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uploadStatus;
+
+        /// <summary>
+        /// imgUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload imgUpload;
+
+        /// <summary>
+        /// btnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpload;
+
+        /// <summary>
+        /// productImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image productImage;
+
+        /// <summary>
         /// rqrtxtProductName control.
         /// </summary>
         /// <remarks>
@@ -42,22 +78,22 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
-        /// rqrtxtType control.
+        /// rqrddlType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrtxtType;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrddlType;
 
         /// <summary>
-        /// txtType control.
+        /// ddlType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
 
         /// <summary>
         /// rqrtxtQuantity control.

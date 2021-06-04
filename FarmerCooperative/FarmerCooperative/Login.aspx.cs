@@ -20,7 +20,7 @@ namespace FarmerCooperative
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtEmailAddress.Text;
+            string userID = txtUserID.Text;
             string pass = txtPassword.Text;
 
             try
@@ -32,29 +32,28 @@ namespace FarmerCooperative
                     }
                     using (var cmd = db.CreateCommand()) {
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT * FROM USERS WHERE EMAIL = '" + email + "' AND PASSWORD = '" + pass + "'";
+                        // TODO use the user id instead of email
+                        cmd.CommandText = "SELECT * FROM USERS WHERE USERID = '" + userID + "' AND PASSWORD = '" + pass + "'";
                         SqlDataReader rdr = cmd.ExecuteReader();
                         if (rdr.HasRows)
                         {
                             while (rdr.Read())
                             {
                                 Response.Write("<script>alert('Hello "+ rdr.GetValue(1).ToString() +"');</script>");
-                                Session["email"] = rdr.GetValue(5).ToString();
-                                Session["firstname"] = rdr.GetValue(1).ToString();
-                                int role = Convert.ToInt32(rdr.GetValue(7));
-                                if (role == 1)
+                                Session["userID"] = rdr.GetValue(rdr.GetOrdinal("userID")).ToString();
+                                Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString();
+                                int role = Convert.ToInt32(rdr.GetValue(rdr.GetOrdinal("Role")));
+                                Session["role"] = "";
+                                if ((role & 1) != 0) // Role in binary is ..1 (= 1) if the user is a seller.
                                 {
-                                    Session["role"] = "seller";
+                                    Session["role"] += "seller";
                                 }
-                                else if (role == 2)
+                                else if ((role & 2) != 0) // Role in binary is .1. (= 2) if the user is a buyer.
                                 {
-                                    Session["role"] = "buyer";
+                                    Session["role"] += "buyer";
+                                    Session["cart"] = new List<String>(); // TODO: This needs to be an instance of Sale that has a product id and a quantity.
                                 }
-                                else if (role == 3)
-                                {
-                                    Session["role"] = "seller & buyer";
-                                }
-                                else if (role == 4)
+                                else if ((role & 4) != 0) // Role in binary is 1.. (= 4) if the user is an admin.
                                 {
                                     Session["role"] = "admin";
                                 }
@@ -62,14 +61,14 @@ namespace FarmerCooperative
                             Response.Redirect("homepage.aspx");
                         }else
                         {
-                            Response.Write("<script>alert('Invalid credentials');</script>");
+                            Response.Write("<pre style='background: white;'>user id is '" + userID + "'</pre><script>alert('Invalid credentials');</script>");
                             clearScreen();
                         }                       
                     }
                 }
             } catch (Exception ex)
             {
-                Response.Write("<script>alert('"+ ex.Message +"');</script>");
+                Response.Write("<pre style='background: white;'>" + ex.ToString() + "</pre><script>alert('"+ ex.Message +"');</script>");
             } 
             
         }
@@ -81,8 +80,8 @@ namespace FarmerCooperative
 
         public void clearScreen()
         {
-            txtEmailAddress.Text = " ";
-            txtPassword.Text = " ";
+            txtUserID.Text = "";
+            txtPassword.Text = "";
         }
 
     }

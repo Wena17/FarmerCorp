@@ -16,8 +16,8 @@
                     </div>
                     <div class="card-body">
                             <div class="form-group">
-                                <label class="small mb-1" for="txtEmailAddress">Email</label>
-                                <asp:TextBox class="form-control py-4" ID="txtEmailAddress" runat="server" placeholder="sample@sample.com" TextMode="Email"></asp:TextBox>
+                                <label class="small mb-1" for="txtUserID">User ID</label>
+                                <asp:TextBox class="form-control py-4" ID="txtUserID" runat="server" placeholder="sample0223"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="inputPassword">Password</label>

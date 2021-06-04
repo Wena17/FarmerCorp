@@ -16,16 +16,22 @@
                         </div>
                         <div class="card-body">
                                 <div class="form-row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label class="col-form-label" for="txtfname">Full Name</label>
                                             <asp:TextBox class="form-control py-4" ID="txtfname" runat="server" placeholder="First Name"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label class="col-form-label" for="txtlname">&nbsp;</label>
                                             <asp:TextBox class="form-control py-4" ID="txtlname" runat="server" placeholder="Last Name"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="col-form-label" for="txtMname">&nbsp;</label>
+                                            <asp:TextBox class="form-control py-4" ID="txtMname" runat="server" placeholder="M.I"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-center  mt-3 mb-3">
-                                    <a class="btn btn-primary btn-lg" id="btnRegister" href="#">Sign up</a>
+                                    <asp:Button class="btn btn-primary btn-lg" ID="btnRegister" runat="server" Text="Sign up" OnClick="btnRegister_Click" />
                                 </div>
                         </div>
                         <div class="card-footer text-center">

@@ -24,13 +24,13 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.Button btnclose;
 
         /// <summary>
-        /// txtEmailAddress control.
+        /// txtUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtUserID;
 
         /// <summary>
         /// txtPassword control.
