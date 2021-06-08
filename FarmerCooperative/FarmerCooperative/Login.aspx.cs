@@ -32,7 +32,6 @@ namespace FarmerCooperative
                     }
                     using (var cmd = db.CreateCommand()) {
                         cmd.CommandType = CommandType.Text;
-                        // TODO use the user id instead of email
                         cmd.CommandText = "SELECT * FROM USERS WHERE USERID = '" + userID + "' AND PASSWORD = '" + pass + "'";
                         SqlDataReader rdr = cmd.ExecuteReader();
                         if (rdr.HasRows)
@@ -40,6 +39,7 @@ namespace FarmerCooperative
                             while (rdr.Read())
                             {
                                 Response.Write("<script>alert('Hello "+ rdr.GetValue(1).ToString() +"');</script>");
+                                Session["id"] = rdr.GetValue(rdr.GetOrdinal("ID")).ToString();
                                 Session["userID"] = rdr.GetValue(rdr.GetOrdinal("userID")).ToString();
                                 Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString();
                                 int role = Convert.ToInt32(rdr.GetValue(rdr.GetOrdinal("Role")));

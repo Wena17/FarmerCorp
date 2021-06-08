@@ -25,7 +25,7 @@
                                     <asp:Button class="form-control btn btn-dark btn-sm"  ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" CausesValidation="False" />
                                 </div>
                                 <div class="col-md-5">
-                                    <asp:Image CssClass="rounded" ID="productImage" runat="server" Visible="False" />
+                                    <asp:Image CssClass="img-fluid img-thumbnail" ID="productImage" runat="server" Visible="False" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,18 +41,29 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="col-form-label" for="txtQuantity">Quantity</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtQuantity" runat="server" ErrorMessage="*Please enter the quantity*" ControlToValidate="txtQuantity" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control py-4" ID="txtQuantity" runat="server" TextMode="Number"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rqrtxtQuantity" runat="server" ErrorMessage="*Enter the quantity*" ControlToValidate="txtQuantity" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:TextBox class="form-control" ID="txtQuantity" runat="server" TextMode="Number"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label class="col-form-label" for="txtPrice">Price</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtPrice" runat="server" ErrorMessage="*Please enter the price*" ControlToValidate="txtPrice" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control py-4" ID="txtPrice" runat="server" TextMode="Number" step="0.01"></asp:TextBox>
+                                        <label class="col-form-label" for="ddlUnit">Unit</label>
+                                        <asp:RequiredFieldValidator ID="rqrUnit" runat="server" ErrorMessage="*" ControlToValidate="ddlUnit" ForeColor="Red" SetFocusOnError="True" InitialValue="Select"></asp:RequiredFieldValidator>
+                                        <asp:DropDownList class="form-control" ID="ddlUnit" runat="server">
+                                                <asp:ListItem Text="Select" Value="Select" />
+                                                <asp:ListItem Text="kg" Value="kg" />
+                                                <asp:ListItem Text="pieces" Value="pieces" />
+                                            </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="txtPrice">Price per Unit</label>
+                                        <asp:RequiredFieldValidator ID="rqrtxtPrice" runat="server" ErrorMessage="*Enter price*" ControlToValidate="txtPrice" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:TextBox class="form-control" ID="txtPrice" runat="server" TextMode="Number" step="0.01"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
