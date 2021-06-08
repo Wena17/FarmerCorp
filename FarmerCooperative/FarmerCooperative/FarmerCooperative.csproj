@@ -69,9 +69,9 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddProduct.aspx" />
-    <Content Include="App_Data\Farmer.mdf" />
-    <Content Include="App_Data\Farmer_log.ldf">
-      <DependentUpon>Farmer.mdf</DependentUpon>
+    <Content Include="App_Data\FarmerDBF.mdf" />
+    <Content Include="App_Data\FarmerDBF_log.ldf">
+      <DependentUpon>FarmerDBF.mdf</DependentUpon>
     </Content>
     <Content Include="Homepage.aspx" />
     <Content Include="imgs\1LOGO.png" />
@@ -93,6 +93,7 @@
     <Content Include="MyScript\scripts.js" />
     <Content Include="Product.aspx" />
     <Content Include="productImg\fruits.jpg" />
+    <Content Include="SellersProduct.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -133,6 +134,13 @@
       <DependentUpon>Product.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SellersProduct.aspx.cs">
+      <DependentUpon>SellersProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SellersProduct.aspx.designer.cs">
+      <DependentUpon>SellersProduct.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
