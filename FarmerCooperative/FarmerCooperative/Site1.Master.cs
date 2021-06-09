@@ -15,25 +15,33 @@ namespace FarmerCooperative
             {
                 if (Session["role"] == null)
                 {
-                    btnLogout.Visible = false;
                     sellernavbarDropdown.Visible = false;
                     buyerDropdown.Visible = false;
+                    adminDropdown.Visible = false;
                     btnlogin.Visible = true;
                     signup.Visible = true;
                 }
                 else if (Session["role"] == "seller")
                 {
-                    btnLogout.Visible = true;
                     sellernavbarDropdown.Visible = true;
                     buyerDropdown.Visible = false;
+                    adminDropdown.Visible = false;
                     btnlogin.Visible = false;
                     signup.Visible = false;
                 }
                 else if (Session["role"] == "buyer")
                 {
-                    btnLogout.Visible = true;
                     sellernavbarDropdown.Visible = false;
                     buyerDropdown.Visible = true;
+                    adminDropdown.Visible = false;
+                    btnlogin.Visible = false;
+                    signup.Visible = false;
+                }
+                else if (Session["role"] == "admin")
+                {
+                    sellernavbarDropdown.Visible = false;
+                    buyerDropdown.Visible = false;
+                    adminDropdown.Visible = true;
                     btnlogin.Visible = false;
                     signup.Visible = false;
                 }
@@ -58,6 +66,26 @@ namespace FarmerCooperative
             Session.Abandon();
             Session.Clear();
             if(Session["firstname"] == null)
+            {
+                Response.Redirect("homepage.aspx");
+            }
+        }
+
+        protected void btnLogout2_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            if (Session["firstname"] == null)
+            {
+                Response.Redirect("homepage.aspx");
+            }
+        }
+
+        protected void btnLogout1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            if (Session["firstname"] == null)
             {
                 Response.Redirect("homepage.aspx");
             }

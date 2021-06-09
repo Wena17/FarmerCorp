@@ -42,15 +42,6 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.LinkButton btnlogin;
 
         /// <summary>
-        /// btnLogout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
-
-        /// <summary>
         /// sellernavbarDropdown control.
         /// </summary>
         /// <remarks>
@@ -60,6 +51,15 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.LinkButton sellernavbarDropdown;
 
         /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+
+        /// <summary>
         /// buyerDropdown control.
         /// </summary>
         /// <remarks>
@@ -67,6 +67,33 @@ namespace FarmerCooperative
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton buyerDropdown;
+
+        /// <summary>
+        /// btnLogout1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout1;
+
+        /// <summary>
+        /// adminDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton adminDropdown;
+
+        /// <summary>
+        /// btnLogout2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout2;
 
         /// <summary>
         /// ContentPlaceHolder1 control.
