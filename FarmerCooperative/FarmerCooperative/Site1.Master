@@ -44,7 +44,7 @@
                             <ul class="dropdown-menu" aria-labelledby="sellernavbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="product.aspx">All Products</a></li>
+                                <li><a class="dropdown-item" href="SellersProduct.aspx">All Products</a></li>
                                 <li><a class="dropdown-item" href="addproduct.aspx">Add Product</a></li>                                
                                 <li><a class="dropdown-item" href="#!">Sales</a></li>    
                                 <li class="dropdown-item"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CausesValidation="False">Log out</asp:LinkButton></li>
