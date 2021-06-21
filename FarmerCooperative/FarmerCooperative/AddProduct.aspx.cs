@@ -14,11 +14,46 @@ namespace FarmerCooperative
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        string conProduct = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;        
-        
+        string conProduct = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            productTypeList();
+            if (Session["id"] == null && Session["userID"] == null)
+            {
+                Response.Redirect("login.aspx", false);
+            } else {
+                if (Session["product"].Equals("change"))
+                {
+                    Add.Visible = false;
+                    Changes.Visible = true;
+                    Image.Visible = false;
+                    CType.Visible = true;
+                    Type.Visible = false;
+                    CUnit.Visible = true;
+                    Unit.Visible = false;
+                    CDate.Visible = true;
+                    Dates.Visible = false;
+                    btnSubmit.Visible = false;
+                    btnUpdate.Visible = true;
+                    btnDelete.Visible = true;
+                }
+                else
+                {
+                    Add.Visible = true;
+                    Changes.Visible = false;
+                    Image.Visible = true;
+                    CType.Visible = false;
+                    Type.Visible = true;
+                    CUnit.Visible = false;
+                    Unit.Visible = true;
+                    CDate.Visible = false;
+                    Dates.Visible = true;
+                    btnSubmit.Visible = true;
+                    btnUpdate.Visible = false;
+                    btnDelete.Visible = false;
+                    productTypeList();
+                }
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -34,78 +69,60 @@ namespace FarmerCooperative
 
             try
             {
-                //No user it will direct you to the login page
-                if(Session["id"] == null)
+                if(Session["filename"].ToString().Length == 0 && Session["imgPath"].ToString().Length == 0)
                 {
-                    if(Session["filename"] == null)
-                    {
-                        Response.Write("<script>alert('No seller found: Try logging in');</script>");
-                        Response.Redirect("login.aspx");
-                    }
-                    else
-                    {
-                        //image is uploaded but cannot be save yet to database because no user
-                        deleteImg();
-                        Response.Write("<script>alert('No seller found: Try logging in');</script>");
-                        Response.Redirect("login.aspx");
-                    }
-                    
+                    uploadStatus.InnerText = "Uploaded Product image";
+                    Response.Write("<script>alert('Must upload image first');</script>");
                 }
-                else 
-                { 
-                    if(Session["filename"] == null)
+                else {
+                    using(var db = new SqlConnection(conProduct))
                     {
-                        Response.Write("<script>alert('Must upload image first');</script>");
-                    }
-                    else { 
-                        using(var db = new SqlConnection(conProduct))
+                        if (db.State == ConnectionState.Closed)
                         {
-                            if (db.State == ConnectionState.Closed)
+                            db.Open();
+                        }
+                        using(var cmd = db.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "INSERT INTO PRODUCT(NAME, TYPE, QUANTITY, UNIT, PRICE, HARVESTDATE, EXPIRYDATE, LOCATION, IMGFILENAME, IMGPATH, SELLERID)"
+                                + "VALUES( "
+                                + "@name, "
+                                + "@type, "
+                                + "@quantity, "
+                                + "@unit, "
+                                + "@price, "
+                                + "@harvestDate, "
+                                + "@expiryDate, "
+                                + "@location, "
+                                + "@img, "
+                                + "@imgPath, "
+                                + "@sellerID)";
+                            cmd.Parameters.AddWithValue("@name", name);
+                            cmd.Parameters.AddWithValue("@type", type);
+                            cmd.Parameters.AddWithValue("@quantity", quantity);
+                            cmd.Parameters.AddWithValue("@unit", unit);
+                            cmd.Parameters.AddWithValue("@price", price);
+                            cmd.Parameters.AddWithValue("@harvestDate", harvestDate);
+                            cmd.Parameters.AddWithValue("@expiryDate", expiryDate);
+                            cmd.Parameters.AddWithValue("@location", location);
+                            cmd.Parameters.AddWithValue("@img", Session["filename"].ToString());
+                            cmd.Parameters.AddWithValue("@imgPath", Session["imgPath"].ToString());
+                            cmd.Parameters.AddWithValue("@sellerID", Session["userID"].ToString());
+                            var ctr = cmd.ExecuteNonQuery();
+                            if(ctr == 1)
                             {
-                                db.Open();
+                                Response.Write("<script>alert('"+ quantity +" "+ name +" has been added to your products');</script>");
+                                productImage.Visible = false;
+                                uploadStatus.InnerText = "Uploaded Product image";
+                                clearScreen();
                             }
-                            using(var cmd = db.CreateCommand())
+                            else
                             {
-                                cmd.CommandType = CommandType.Text;
-                                cmd.CommandText = "INSERT INTO PRODUCT(NAME, TYPE, QUANTITY, UNIT, PRICE, HARVESTDATE, EXPIRYDATE, LOCATION, IMGFILENAME, SELLERID)"
-                                    + "VALUES( "
-                                    + "@name, "
-                                    + "@type, "
-                                    + "@quantity, "
-                                    + "@unit, "
-                                    + "@price, "
-                                    + "@harvestDate, "
-                                    + "@expiryDate, "
-                                    + "@location, "
-                                    + "@img, "
-                                    + "@sellerID)";
-                                cmd.Parameters.AddWithValue("@name", name);
-                                cmd.Parameters.AddWithValue("@type", type);
-                                cmd.Parameters.AddWithValue("@quantity", quantity);
-                                cmd.Parameters.AddWithValue("@unit", unit);
-                                cmd.Parameters.AddWithValue("@price", price);
-                                cmd.Parameters.AddWithValue("@harvestDate", harvestDate);
-                                cmd.Parameters.AddWithValue("@expiryDate", expiryDate);
-                                cmd.Parameters.AddWithValue("@location", location);
-                                cmd.Parameters.AddWithValue("@img", Session["filename"]);
-                                cmd.Parameters.AddWithValue("@sellerID", Session["id"]);
-                                var ctr = cmd.ExecuteNonQuery();
-                                if(ctr == 1)
-                                {
-                                    Response.Write("<script>alert('"+ quantity +" "+ name +" has been added to your products');</script>");
-                                    productImage.Visible = false;
-                                    uploadStatus.InnerText = "Uploaded Product image";
-                                    clearScreen();
-                                }
-                                else
-                                {
-                                    Response.Write("<script>alert('Something went wrong with your input data.');</script>");
-                                }
+                                Response.Write("<script>alert('Something went wrong with your input data.');</script>");
                             }
                         }
                     }
-
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -115,7 +132,9 @@ namespace FarmerCooperative
 
         protected void btnclose_Click(object sender, EventArgs e)
         {
-            Response.Redirect("homepage.aspx");
+            Session["filename"] = null;
+            Session["filename"] = "";
+            Response.Redirect("homepage.aspx", false);
         }
 
         public void productTypeList()
@@ -145,24 +164,27 @@ namespace FarmerCooperative
         }
 
         public void clearScreen()
-        {            
-            txtProductName.Text = "";
-            txtQuantity.Text = "";
-            txtPrice.Text = "";
-            txtHarvestDate.Text = "";
-            txtExpiryDate.Text = "";
-            txtAddress.Text = "";
+        {
+            txtProductName.Text = string.Empty;
+            txtQuantity.Text = string.Empty;
+            txtPrice.Text = string.Empty;
+            txtHarvestDate.Text = string.Empty;
+            txtExpiryDate.Text = string.Empty;
+            txtAddress.Text = string.Empty;
             Session["filename"] = null;
+            Session["filename"] = string.Empty;
+            Session["imgPath"] = null;
+            Session["imgPath"] = string.Empty;
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            clearScreen();
             deleteImg();
+            clearScreen();
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
-        {            
+        {
             uploadImg();
         }
 
@@ -180,16 +202,17 @@ namespace FarmerCooperative
                     {
                         uploadStatus.InnerText = "File already exist";
                     }
-                    else { 
-                        if ((extension == ".jpg") || (extension == ".jpeg") || (extension == ".png") || (extension == ".JPG"))
+                    else {
+                        if ((extension == ".jpg") || (extension == ".jpeg") || (extension == ".png") || (extension == ".JPG") || (extension == ".JPEG") || (extension == ".PNG"))
                         {
                             if(filesize < 2100000) {
                                 string savePath = Path.Combine(saveDIR, filename);
                                 imgUpload.SaveAs(savePath);
                                 productImage.Visible = true;
-                                productImage.ImageUrl = "/productImg/" + filename;
+                                productImage.ImageUrl = Path.Combine("/productImg/",  filename);
+                                Session["imgPath"] = Path.Combine("/productImg/", filename);
                                 Session["filename"] = filename;
-                                uploadStatus.InnerText = "Your file was uploaded successfully.";                            
+                                uploadStatus.InnerText = "Your file was uploaded successfully.";
                             }
                             else
                             {
@@ -227,15 +250,24 @@ namespace FarmerCooperative
                     Session["filename"] = null;
                 } else
                 {
-                    
-                    Response.Write("<pre style='background: white;'>" + f + "</pre><script>alert(' " + f + "');</script>");
+
+                    Response.Write("<pre style='background: white;'>" + filename + "</pre><script>alert(' " + filename + "');</script>");
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
-    
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

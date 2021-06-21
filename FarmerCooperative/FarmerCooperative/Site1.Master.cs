@@ -11,6 +11,7 @@ namespace FarmerCooperative
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["product"] = "";
             try
             {
                 if (Session["role"] == null)
@@ -21,7 +22,7 @@ namespace FarmerCooperative
                     btnlogin.Visible = true;
                     signup.Visible = true;
                 }
-                else if (Session["role"] == "seller")
+                else if (Session["role"].Equals("seller"))
                 {
                     sellernavbarDropdown.Visible = true;
                     buyerDropdown.Visible = false;
@@ -29,7 +30,7 @@ namespace FarmerCooperative
                     btnlogin.Visible = false;
                     signup.Visible = false;
                 }
-                else if (Session["role"] == "buyer")
+                else if (Session["role"].Equals("buyer"))
                 {
                     sellernavbarDropdown.Visible = false;
                     buyerDropdown.Visible = true;
@@ -37,7 +38,7 @@ namespace FarmerCooperative
                     btnlogin.Visible = false;
                     signup.Visible = false;
                 }
-                else if (Session["role"] == "admin")
+                else if (Session["role"].Equals("admin"))
                 {
                     sellernavbarDropdown.Visible = false;
                     buyerDropdown.Visible = false;
@@ -53,12 +54,12 @@ namespace FarmerCooperative
 
         protected void signup_Click(object sender, EventArgs e)
         {
-            Response.Redirect("signup.aspx");
+            Response.Redirect("signup.aspx", false);
         }
 
         protected void btnlogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("login.aspx");
+            Response.Redirect("login.aspx", false);
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace FarmerCooperative
             Session.Clear();
             if(Session["firstname"] == null)
             {
-                Response.Redirect("homepage.aspx");
+                Response.Redirect("homepage.aspx", false);
             }
         }
 
@@ -77,7 +78,7 @@ namespace FarmerCooperative
             Session.Clear();
             if (Session["firstname"] == null)
             {
-                Response.Redirect("homepage.aspx");
+                Response.Redirect("homepage.aspx", false);
             }
         }
 
@@ -87,8 +88,13 @@ namespace FarmerCooperative
             Session.Clear();
             if (Session["firstname"] == null)
             {
-                Response.Redirect("homepage.aspx");
+                Response.Redirect("homepage.aspx", false);
             }
+        }
+
+        protected void btnChange_Click(object sender, EventArgs e)
+        {
+            Session["product"] = "change";
         }
     }
 }

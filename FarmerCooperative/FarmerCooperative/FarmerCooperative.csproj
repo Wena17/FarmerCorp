@@ -69,9 +69,9 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddProduct.aspx" />
-    <Content Include="App_Data\FarmerDBF.mdf" />
-    <Content Include="App_Data\FarmerDBF_log.ldf">
-      <DependentUpon>FarmerDBF.mdf</DependentUpon>
+    <Content Include="App_Data\FarmerDB.mdf" />
+    <Content Include="App_Data\FarmerDB_log.ldf">
+      <DependentUpon>FarmerDB.mdf</DependentUpon>
     </Content>
     <Content Include="dashboard.aspx" />
     <Content Include="Homepage.aspx" />

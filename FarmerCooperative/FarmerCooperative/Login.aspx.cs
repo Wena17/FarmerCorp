@@ -20,8 +20,8 @@ namespace FarmerCooperative
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string userID = txtUserID.Text;
-            string pass = txtPassword.Text;
+            string userID = txtUserID.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
             try
             {
@@ -32,16 +32,20 @@ namespace FarmerCooperative
                     }
                     using (var cmd = db.CreateCommand()) {
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT * FROM USERS WHERE USERID = '" + userID + "' AND PASSWORD = '" + pass + "'";
+                        cmd.CommandText = "SELECT * FROM USERS WHERE USERID = @userID AND PASSWORD = @pass";
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@pass", password);
+
                         SqlDataReader rdr = cmd.ExecuteReader();
                         if (rdr.HasRows)
                         {
                             while (rdr.Read())
                             {
-                                Response.Write("<script>alert('Hello "+ rdr.GetValue(1).ToString() +"');</script>");
+                                Response.Write("<script>alert('Hello " + rdr["Fname"].ToString() + "');</script>");
                                 Session["id"] = rdr.GetValue(rdr.GetOrdinal("ID")).ToString();
                                 Session["userID"] = rdr.GetValue(rdr.GetOrdinal("userID")).ToString();
                                 Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString();
+                                Session["status"] = rdr.GetValue(rdr.GetOrdinal("APPROVALSTATUS")).ToString();
                                 int role = Convert.ToInt32(rdr.GetValue(rdr.GetOrdinal("Role")));
                                 Session["role"] = "";
                                 if ((role & 1) != 0) // Role in binary is ..1 (= 1) if the user is a seller.
@@ -56,12 +60,20 @@ namespace FarmerCooperative
                                 else if ((role & 4) != 0) // Role in binary is 1.. (= 4) if the user is an admin.
                                 {
                                     Session["role"] = "admin";
-                                }
+                                }                                
                             }
-                            Response.Redirect("homepage.aspx");
+                            if (Session["role"].Equals("admin"))
+                            {
+                                Response.Redirect("dashboard.aspx", false);
+                            }
+                            else
+                            {
+                                Response.Redirect("homepage.aspx", false);
+                            }
+                            
                         }else
                         {
-                            Response.Write("<pre style='background: white;'>user id is '" + userID + "'</pre><script>alert('Invalid credentials');</script>");
+                            Response.Write("<script>alert('Invalid credentials');</script>");
                             clearScreen();
                         }                       
                     }
@@ -75,13 +87,13 @@ namespace FarmerCooperative
 
         protected void btnclose_Click(object sender, EventArgs e)
         {
-            Response.Redirect("homepage.aspx");
+            Response.Redirect("homepage.aspx", false);
         }
 
         public void clearScreen()
         {
-            txtUserID.Text = "";
-            txtPassword.Text = "";
+            txtUserID.Text = string.Empty;
+            txtPassword.Text = string.Empty;
         }
 
     }

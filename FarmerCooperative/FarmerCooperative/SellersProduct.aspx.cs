@@ -12,45 +12,61 @@ namespace FarmerCooperative
 {
     public partial class SellersProducts : System.Web.UI.Page
     {
-        string conn = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
+        string conProd = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if(Session["userID"] == null)
             {
-                Products();
+                Response.Redirect("login.aspx", false);
+            }
+            else
+            {
+                string command = SqlDataSource1.SelectCommand;
+                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT WHERE SELLERID = '" + Session["userID"].ToString() + "'";
+                SqlDataSource1.DataBind();
+                productList.DataBind();
             }
         }
-        protected void Products()
+
+        protected void productList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            using (var db = new SqlConnection(conn))
+            int index = Convert.ToInt32(e.CommandArgument);
+
+            GridViewRow selectedrow = productList.Rows[index];
+            TableCell id = selectedrow.Cells[0];
+            string prodID = id.Text;
+
+            if (e.CommandName == "prodDelete")
             {
-                db.Open();
-                using (var cmd = db.CreateCommand())
+                try
                 {
-
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT sellerID,name,quantity,price, harvestDate, expiryDate,location,imgFilename FROM PRODUCT";
-
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    if (dr.HasRows == true)
+                    using (var db = new SqlConnection(conProd))
                     {
-                        ProductList.DataSource = dr;
-                        ProductList.DataBind();
+                        if (db.State == ConnectionState.Closed)
+                        {
+                            db.Open();
+                        }
+                        using (var cmd = db.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "DELETE FROM PRODUCT WHERE ID = @id AND SELLERID = @seller ";
+                            cmd.Parameters.AddWithValue("@id", prodID);
+                            cmd.Parameters.AddWithValue("@seller", Session["userID"].ToString().Trim());
+
+                            var ctr = cmd.ExecuteNonQuery();
+                            if (ctr == 1)
+                            {
+                                Response.Redirect(Request.RawUrl);
+                            }
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    Response.Write("<pre style='background: white;'>" + ex.ToString() + "</pre><script>alert('Something went wrong');</script>");
+                }
             }
-
-        }
-
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            
-        }
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

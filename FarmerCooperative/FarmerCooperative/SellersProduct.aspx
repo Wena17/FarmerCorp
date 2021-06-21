@@ -1,17 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="SellersProducts.aspx.cs" Inherits="FarmerCooperative.SellersProducts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            margin-left: 20px;
-        }
-    </style>
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <section class="page-section about-heading">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-15">
+                    <div class="col-lg-10">
                         <div class="card shadow-lg border-0 rounded-lg mb-4">
                         <div class="card-header">
                             <div class="form-group d-flex justify-content-between">
@@ -21,23 +16,71 @@
                         </div>
                
                         <div class="card-body">
-                            <asp:GridView ID="ProductList" runat="server" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style1" Height="230px" Width="871px" CellSpacing="2">
-                                <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
-                                <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
-                                <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#FFF1D4" />
-                                <SortedAscendingHeaderStyle BackColor="#B95C30" />
-                                <SortedDescendingCellStyle BackColor="#F1E5CE" />
-                                <SortedDescendingHeaderStyle BackColor="#93451F" />
+                            <asp:GridView CssClass="table table-bordered" ID="productList" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowCommand="productList_RowCommand">
+
+                                <Columns>
+                                    <asp:BoundField DataField="Id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
+                                    <asp:BoundField DataField="imgFilename" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="False" />
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <div class="container-fluid shadow-md">
+                                                <div class="row">
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("name") %>' Font-Names="OPEN SANS" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <asp:Label ID="lbl" runat="server" Text="Category:" Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblType" runat="server" Font-Bold="True" Text='<%# Eval("type") %>' Font-Names="Arvo" Font-Size="Large"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <asp:Label ID="lbl2" runat="server" Text="Harvest Date: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblHDate" runat="server" Text='<%# Eval("harvestDate", "{0:d}") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                                                &nbsp;&nbsp; | &nbsp;&nbsp;
+                                                                <asp:Label ID="lbl3" runat="server" Text="Expiry Date: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblEDate" runat="server" Text='<%# Eval("expiryDate", "{0:d}") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <asp:Label ID="lbl4" runat="server" Text="Price: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("price") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                                                &nbsp;&nbsp; | &nbsp;&nbsp;
+                                                                <asp:Label ID="lbl5" runat="server" Text="Stock: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblQty" runat="server" Text='<%# Eval("quantity") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>&nbsp;
+                                                                <asp:Label ID="lblUnit" runat="server" Text='<%# Eval("unit") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <asp:Label ID="lbl6" runat="server" Text="Address: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                                                <asp:Label ID="lblAdd" runat="server" Text='<%# Eval("location") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <asp:Image CssClass="img-fluid p-2" ID="productImg" runat="server" ImageUrl='<%# Eval("imgPath") %>' />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:ButtonField ControlStyle-CssClass="btn btn-info" ButtonType="Button" CommandName="prodUpdate" ShowHeader="True" Text="Update" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center">
+<ControlStyle CssClass="btn btn-info"></ControlStyle>
+                                    </asp:ButtonField>
+                                    <asp:ButtonField ControlStyle-CssClass="btn btn-danger" ButtonType="Button" CommandName="prodDelete" ShowHeader="True" Text="Delete" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center">
+
+<ControlStyle CssClass="btn btn-danger"></ControlStyle>
+                                    </asp:ButtonField>
+
+                                </Columns>                                
                             </asp:GridView>
-                        </div>
-                        <div class="card-footer text-center">
-                            <div class="form-group d-flex align-items-center justify-content-evenly mt-3 mb-3">
-                                <asp:Button class="btn btn-primary btn-lg" ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" />
-                                <asp:Button class="btn btn-primary btn-lg" ID="btnDelete" runat="server" Text="Delete Product" CausesValidation="False" OnClick="btnDelete_Click" />
-                            </div>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [PRODUCT]"></asp:SqlDataSource>
                         </div>
                         </div>
                     </div>

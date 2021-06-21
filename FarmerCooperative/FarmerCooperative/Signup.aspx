@@ -7,14 +7,28 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 mx-auto">
                     <div class="card shadow-lg border-0 rounded-lg mb-4">
-                        <div class="card-header">
+                        <div class="card-header" id="signupHeader" runat="server">
                             <div class="form-group d-flex justify-content-between">
                                 <h3 class="text-center font-weight-light my-2">&nbsp;</h3>  
                                 <h3 class="font-weight-light my-2">Sign up</h3>  
                                 <asp:Button class="btn btn-close" ID="btnclose" runat="server" CausesValidation="False" OnClick="btnclose_Click" />
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-header" id="chooseHeader" runat="server">
+                            <div class="form-group d-flex justify-content-between">
+                                <h3 class="text-center font-weight-light my-2">&nbsp;</h3>  
+                                <h3 class="font-weight-light my-2">Which one are you?</h3>  
+                                <asp:Button class="btn btn-close" ID="btnChooseClose" runat="server" CausesValidation="False" OnClick="btnChooseClose_Click" />
+                            </div>
+                        </div>
+                        <div class="card-body" id="choose" runat="server">
+                            <div class="form-group d-flex justify-content-around  mt-3 mb-3">
+                                <asp:Button class="btn btn-secondary btn-lg" ID="btnSeller" runat="server" Text="Seller" OnClick="btnSeller_Click" />
+                                <asp:Button class="btn btn-info btn-lg" ID="btnBuyer" runat="server" Text="Buyer" OnClick="btnBuyer_Click" />
+                                <asp:Button class="btn btn-primary btn-lg" ID="btnBothSB" runat="server" Text="Both Buyer & Seller" OnClick="btnBothSB_Click" />
+                            </div>
+                        </div>
+                        <div class="card-body" id="fillIn" runat="server">
                                 <div class="form-row">
                                     <div class="col-md-5">
                                         <div class="form-group">
@@ -114,7 +128,7 @@
                                     <asp:Button class="btn btn-primary btn-lg" ID="btnRegister" runat="server" Text="Sign up" OnClick="btnRegister_Click" />
                                 </div>
                         </div>
-                        <div class="card-footer text-center">
+                        <div class="card-footer text-center" id="fillFooter" runat="server">
                             <div class="small"><a href="login.aspx">Already have an account?</a></div>
                         </div>
                     </div>

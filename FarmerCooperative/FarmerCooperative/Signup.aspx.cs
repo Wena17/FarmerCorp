@@ -17,12 +17,9 @@ namespace FarmerCooperative
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnclose_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("homepage.aspx");
+            signupHeader.Visible = false;
+            fillIn.Visible = false;
+            fillFooter.Visible = false;
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
@@ -32,8 +29,13 @@ namespace FarmerCooperative
             string mname = txtMname.Text;
             string password = txtPassword.Text;
             string email = txtEmail.Text;
-            string address = txtAddress.Text + " " +  txtCity.Text + " " + ddlProvince.SelectedValue + " " + txtZipcode.Text;
+            string address = txtAddress.Text + ", " +  txtCity.Text + ", " + ddlProvince.SelectedValue + ", " + txtZipcode.Text;
             string phoneNo = txtPhoneNo.Text;
+            int role;
+            if (Session["whoUse"].Equals("seller")) { role = 1; }
+            else if(Session["whoUse"].Equals("buyer")) { role = 2; }
+            else if (Session["whoUse"].Equals("SB")) { role = 2; }
+            else { ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('OK');window.location='signup.aspx';", true); role = 0; }
 
             try
             {
@@ -47,7 +49,7 @@ namespace FarmerCooperative
                     {
                         cmd.CommandType = CommandType.Text;
                         String userId = fname; // TODO: Add some number to the user id to make it unique.
-                        cmd.CommandText = "INSERT INTO USERS(USERID, FNAME, LNAME, MINITIAL, PASSWORD, EMAIL, ADDRESS, PHONE)"
+                        cmd.CommandText = "INSERT INTO USERS(USERID, FNAME, LNAME, MINITIAL, PASSWORD, EMAIL, ADDRESS, ROLE, PHONE)"
                             + "VALUES( "
                             + "@userid, "
                             + "@fname, "
@@ -56,26 +58,24 @@ namespace FarmerCooperative
                             + "@pass, "
                             + "@email, "
                             + "@add, "
+                            + "@role, "
                             + "@phone)";
                         cmd.Parameters.AddWithValue("@userid", userId);
                         cmd.Parameters.AddWithValue("@fname", fname);
                         cmd.Parameters.AddWithValue("@lname", lname);
                         if (mname == null || mname.Length == 0) { cmd.Parameters.AddWithValue("@mname", DBNull.Value); }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@mname", mname);
-                        }
+                        else { cmd.Parameters.AddWithValue("@mname", mname); }
                         cmd.Parameters.AddWithValue("@pass", password);
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@add", address);
+                        cmd.Parameters.AddWithValue("@role", role);
                         cmd.Parameters.AddWithValue("@phone", phoneNo);
                         var ctr = cmd.ExecuteNonQuery();
                         if(ctr == 1)
                         {
                             Response.Write("<script>alert('Your User id is " + userId + "');</script>");
-                        } else
-                        {
-                            Response.Write("<script>alert('Something went wrong with your input data.');</script>");
+                            chooseHeader.Visible = true;
+                            choose.Visible = true;
                         }
                     }
                 }
@@ -84,6 +84,48 @@ namespace FarmerCooperative
             {
                 Response.Write("<script>alert('Something went wrong');</script><pre>"+ ex.ToString() +"</pre>");
             }
+        }
+        
+        protected void btnclose_Click(object sender, EventArgs e)
+        {
+            Session["whoUse"] = "";
+            Response.Redirect("homepage.aspx", false);
+        }
+
+        protected void btnChooseClose_Click(object sender, EventArgs e)
+        {
+            Session["whoUse"] = "";
+            Response.Redirect("homepage.aspx", false);
+        }
+
+        protected void btnSeller_Click(object sender, EventArgs e)
+        {
+            chooseHeader.Visible = false;
+            choose.Visible = false;
+            signupHeader.Visible = true;
+            fillIn.Visible = true;
+            fillFooter.Visible = true;
+            Session["whoUse"] = "seller";
+        }
+
+        protected void btnBuyer_Click(object sender, EventArgs e)
+        {
+            Session["whoUse"] = "buyer";
+            chooseHeader.Visible = false;
+            choose.Visible = false;
+            signupHeader.Visible = true;
+            fillIn.Visible = true;
+            fillFooter.Visible = true;
+        }
+
+        protected void btnBothSB_Click(object sender, EventArgs e)
+        {
+            Session["whoUse"] = "SB";
+            chooseHeader.Visible = false;
+            choose.Visible = false;
+            signupHeader.Visible = true;
+            fillIn.Visible = true;
+            fillFooter.Visible = true;
         }
     }
 }
