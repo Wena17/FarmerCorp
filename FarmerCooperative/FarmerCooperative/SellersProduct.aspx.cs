@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace FarmerCooperative
 {
@@ -39,6 +40,8 @@ namespace FarmerCooperative
 
             if (e.CommandName == "prodDelete")
             {
+                Session["prodID"] = prodID;
+                deleteImg();
                 try
                 {
                     using (var db = new SqlConnection(conProd))
@@ -66,6 +69,52 @@ namespace FarmerCooperative
                 {
                     Response.Write("<pre style='background: white;'>" + ex.ToString() + "</pre><script>alert('Something went wrong');</script>");
                 }
+            }
+        }
+
+        public void deleteImg()
+        {
+            string folder = Server.MapPath("/productImg");
+            string imgname;
+            try
+            {
+                using (var db = new SqlConnection(conProd))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                    }
+                    using (var cmd = db.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT IMGFILENAME FROM PRODUCT WHERE ID = @id AND SELLERID = @seller ";
+                        cmd.Parameters.AddWithValue("@id", Session["prodID"].ToString().Trim());
+                        cmd.Parameters.AddWithValue("@seller", Session["userID"].ToString().Trim());
+                        SqlDataReader rdr = cmd.ExecuteReader();
+
+                        if (rdr.HasRows)
+                        {
+                            while (rdr.Read())
+                            {
+                                imgname = rdr["IMGFILENAME"].ToString();
+
+                                if (File.Exists(Path.Combine(folder, imgname)))
+                                {
+                                    File.Delete(Path.Combine(folder, imgname));
+                                }
+                                else
+                                {
+
+                                    Response.Write("<pre style='background: white;'>" + imgname + "</pre><script>alert(' " + imgname + "');</script>");
+                                }
+                            }
+                        }
+                    }
+                }                
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
     }

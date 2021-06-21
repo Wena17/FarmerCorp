@@ -1,5 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="SellersProducts.aspx.cs" Inherits="FarmerCooperative.SellersProducts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="SellersProduct.aspx.cs" Inherits="FarmerCooperative.SellersProducts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        #bgColor {
+            background: linear-gradient(to bottom right, #e8f4ea, #e0f0e3,  #d2e7d6, #c8e1cc, #b8d8be);
+        }
+    </style>
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -7,7 +12,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
-                        <div class="card shadow-lg border-0 rounded-lg mb-4">
+                        <div class="card shadow-lg border-0 rounded-lg mb-4" id="bgColor">
                         <div class="card-header">
                             <div class="form-group d-flex justify-content-between">
                                 <h3 class="text-left font-weight-light my-2">My Products</h3>   
@@ -16,16 +21,15 @@
                         </div>
                
                         <div class="card-body">
-                            <asp:GridView CssClass="table table-bordered" ID="productList" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowCommand="productList_RowCommand">
+                            <asp:GridView CssClass=" shadow-lg table table-bordered" ID="productList" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowCommand="productList_RowCommand">
 
                                 <Columns>
                                     <asp:BoundField DataField="Id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                                    <asp:BoundField DataField="imgFilename" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="False" />
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <div class="container-fluid shadow-md">
+                                            <div class="container-fluid">
                                                 <div class="row">
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-8">
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <asp:Label ID="lblName" runat="server" Text='<%# Eval("name") %>' Font-Names="OPEN SANS" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
@@ -63,7 +67,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-2">
+                                                    <div class="col-lg-4">
                                                         <asp:Image CssClass="img-fluid p-2" ID="productImg" runat="server" ImageUrl='<%# Eval("imgPath") %>' />
                                                     </div>
                                                 </div>
@@ -72,10 +76,14 @@
                                     </asp:TemplateField>
                                     <asp:ButtonField ControlStyle-CssClass="btn btn-info" ButtonType="Button" CommandName="prodUpdate" ShowHeader="True" Text="Update" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center">
 <ControlStyle CssClass="btn btn-info"></ControlStyle>
+
+<ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
                                     </asp:ButtonField>
                                     <asp:ButtonField ControlStyle-CssClass="btn btn-danger" ButtonType="Button" CommandName="prodDelete" ShowHeader="True" Text="Delete" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center">
 
 <ControlStyle CssClass="btn btn-danger"></ControlStyle>
+
+<ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
                                     </asp:ButtonField>
 
                                 </Columns>                                
