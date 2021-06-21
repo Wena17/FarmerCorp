@@ -11,7 +11,6 @@ namespace FarmerCooperative
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["product"] = "";
             try
             {
                 if (Session["role"] == null)
@@ -50,6 +49,7 @@ namespace FarmerCooperative
             {
                 Response.Write("<script>alert('"+ ex.Message +"');</script>");
             }
+            Session["product"] = "";
         }
 
         protected void signup_Click(object sender, EventArgs e)
@@ -92,9 +92,10 @@ namespace FarmerCooperative
             }
         }
 
-        protected void btnChange_Click(object sender, EventArgs e)
+
+        protected void btnSales_Click(object sender, EventArgs e)
         {
-            Session["product"] = "change";
+
         }
     }
 }

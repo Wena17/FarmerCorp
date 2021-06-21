@@ -46,7 +46,7 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="SellersProduct.aspx">All Products</a></li>
                                 <li><a class="dropdown-item" href="addproduct.aspx">Add Product</a></li>                                
-                                <li><asp:Button class="dropdown-item" ID="btnChange" runat="server" Text="Edit | Delete Product" OnClick="btnChange_Click" /></li>    
+                                <li><asp:Button class="dropdown-item" ID="btnSales" runat="server" Text="Sales" OnClick="btnSales_Click" /></li>    
                                 <li class="dropdown-item"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CausesValidation="False">Log out</asp:LinkButton></li>
                             </ul>                            
                         </li>

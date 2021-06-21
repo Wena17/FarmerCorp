@@ -16,7 +16,7 @@ namespace FarmerCooperative
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["userID"] == null)
+            if(Session["id"] == null && Session["userID"] == null)
             {
                 Response.Redirect("login.aspx", false);
             }
