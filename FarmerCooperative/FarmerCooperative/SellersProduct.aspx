@@ -8,7 +8,7 @@
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<section class="page-section about-heading">
+    <section class="page-section about-heading">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">

@@ -92,6 +92,7 @@
     <Content Include="imgs\Veggies.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MyCSS\styles.css" />
+    <Content Include="MyCSS\w3.css" />
     <Content Include="MyScript\scripts.js" />
     <Content Include="Product.aspx" />
     <Content Include="productImg\fruits.jpg" />

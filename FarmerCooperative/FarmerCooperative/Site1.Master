@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- CSS Theme -->
     <link href="MyCSS/styles.css" rel="stylesheet" />
+    <link href="MyCSS/w3.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -39,8 +40,8 @@
                         <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="btnlogin" runat="server" OnClick="btnlogin_Click" CausesValidation="False"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;&nbsp;Login</asp:LinkButton></li> 
                     </ul>       
                     <ul class="navbar-nav">                        
-                        <li class="nav-item dropdown">
-                            <asp:LinkButton class="nav-link dropdown-toggle" ID="sellernavbarDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;Logged in</asp:LinkButton>
+                        <li class="nav-item dropdown">                        
+                            <asp:LinkButton class="nav-link dropdown-toggle" ID="sellernavbarDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%= Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="sellernavbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -53,7 +54,7 @@
                     </ul>
                     <ul class="navbar-nav">    
                         <li class="nav-item dropdown" style="left: 0px; top: 0px">
-                            <asp:LinkButton class="nav-link dropdown-toggle" ID="buyerDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;Logged in</asp:LinkButton>
+                            <asp:LinkButton class="nav-link dropdown-toggle" ID="buyerDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%= Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="buyerDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -64,7 +65,7 @@
                     </ul>
                     <ul class="navbar-nav">    
                         <li class="nav-item dropdown">
-                            <asp:LinkButton class="nav-link dropdown-toggle" ID="adminDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;Logged in</asp:LinkButton>
+                            <asp:LinkButton class="nav-link dropdown-toggle" ID="adminDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%= Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <li><a class="dropdown-item" href="dashboard.aspx">Dashboard</a></li>
                                 <li><hr class="dropdown-divider" /></li>                                

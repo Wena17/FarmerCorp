@@ -15,6 +15,7 @@ namespace FarmerCooperative
             {
                 if (Session["role"] == null)
                 {
+
                     sellernavbarDropdown.Visible = false;
                     buyerDropdown.Visible = false;
                     adminDropdown.Visible = false;
@@ -23,6 +24,7 @@ namespace FarmerCooperative
                 }
                 else if (Session["role"].Equals("seller"))
                 {
+                    //lblUser.Text = Session["firstname"].ToString();
                     sellernavbarDropdown.Visible = true;
                     buyerDropdown.Visible = false;
                     adminDropdown.Visible = false;

@@ -148,7 +148,7 @@ namespace FarmerCooperative
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT NAME FROM TYPE";
 
-                        ddlType.DataValueField = "Id";
+                        ddlType.DataValueField = "name";
                         ddlType.DataTextField = "name";
                         ddlType.DataSource = cmd.ExecuteReader();
                         ddlType.DataBind();
