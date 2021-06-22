@@ -35,7 +35,7 @@ namespace FarmerCooperative
                     Dates.Visible = false;
                     btnSubmit.Visible = false;
                     btnUpdate.Visible = true;
-                    btnDelete.Visible = true;
+                    if (!IsPostBack) {  loadProduct(); }
                 }
                 else
                 {
@@ -50,7 +50,6 @@ namespace FarmerCooperative
                     Dates.Visible = true;
                     btnSubmit.Visible = true;
                     btnUpdate.Visible = false;
-                    btnDelete.Visible = false;
                     productTypeList();
                 }
             }
@@ -149,7 +148,7 @@ namespace FarmerCooperative
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT NAME FROM TYPE";
 
-                        ddlType.DataValueField = "name";
+                        ddlType.DataValueField = "Id";
                         ddlType.DataTextField = "name";
                         ddlType.DataSource = cmd.ExecuteReader();
                         ddlType.DataBind();
@@ -163,13 +162,59 @@ namespace FarmerCooperative
             }
         }
 
+        public void loadProduct()
+        {
+            string prodID = Session["prodID"].ToString().Trim();
+            string userID = Session["userID"].ToString().Trim();
+            try
+            {
+                using (var db = new SqlConnection(conProduct))
+                {
+                    db.Open();
+                    using (var cmd = db.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT * FROM PRODUCT WHERE ID = @prodID AND SELLERID = @userID ";
+
+                        cmd.Parameters.AddWithValue("@prodID", prodID);
+                        cmd.Parameters.AddWithValue("@userID", userID);
+
+                        SqlDataReader rdr = cmd.ExecuteReader();
+                        if (rdr.Read())
+                        {
+                            txtProductName.Text = rdr["NAME"].ToString();
+                            txtCType.Text = rdr["TYPE"].ToString();
+                            txtQuantity.Text = rdr["QUANTITY"].ToString();
+                            txtCUnit.Text = rdr["UNIT"].ToString();
+                            txtPrice.Text = rdr["PRICE"].ToString();
+                            txtCHarvestDate.Text = Convert.ToDateTime(rdr["HARVESTDATE"].ToString()).ToString("d");
+                            txtCExpiryDate.Text = Convert.ToDateTime(rdr["EXPIRYDATE"].ToString()).ToString("d");
+                            txtAddress.Text = rdr["LOCATION"].ToString();
+                        }
+                        rdr.Close();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
         public void clearScreen()
         {
             txtProductName.Text = string.Empty;
+            ddlType.ClearSelection();
+            txtCType.Text = string.Empty;
             txtQuantity.Text = string.Empty;
+            ddlUnit.ClearSelection();
+            txtCUnit.Text = string.Empty;
             txtPrice.Text = string.Empty;
             txtHarvestDate.Text = string.Empty;
+            txtCHarvestDate.Text = string.Empty;
             txtExpiryDate.Text = string.Empty;
+            txtCExpiryDate.Text = string.Empty;
             txtAddress.Text = string.Empty;
             Session["filename"] = null;
             Session["filename"] = string.Empty;
@@ -179,8 +224,17 @@ namespace FarmerCooperative
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            deleteImg();
             clearScreen();
+            if (Session["product"].Equals("change"))
+            {
+                Session["product"] = "";
+                Session["prodID"] = "";
+                Response.Redirect("sellersproduct.aspx", false);
+            }
+            else
+            {
+                deleteImg();
+            }
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -262,12 +316,64 @@ namespace FarmerCooperative
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            string prodID = Session["prodID"].ToString().Trim();
+            string userID = Session["userID"].ToString().Trim();
+            string name = txtProductName.Text;
+            string type = txtCType.Text;
+            double quantity = Convert.ToDouble(txtQuantity.Text);
+            string unit = txtCUnit.Text;
+            double price = Convert.ToDouble(txtPrice.Text);
+            DateTime harvestDate = DateTime.ParseExact(txtCHarvestDate.Text, "dd/MM/yyyy", null);
+            DateTime expiryDate = DateTime.ParseExact(txtCHarvestDate.Text, "dd/MM/yyyy", null);
+            string location = txtAddress.Text;
 
+            try
+            {
+                using (var db = new SqlConnection(conProduct))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                    }
+                    using (var cmd = db.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "UPDATE PRODUCT "
+                                + " SET NAME = @name, "
+                                + " TYPE = @type, "
+                                + " QUANTITY = @quantity, "
+                                + " UNIT = @unit, "
+                                + " PRICE = @price, "
+                                + " HARVESTDATE = @harvestDate, "
+                                + " EXPIRYDATE = @expiryDate, "
+                                + " LOCATION = @location "
+                                + " WHERE ID = @prodID AND SELLERID = @userID";
+                        cmd.Parameters.AddWithValue("@prodID", prodID);
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@type", type);
+                        cmd.Parameters.AddWithValue("@quantity", quantity);
+                        cmd.Parameters.AddWithValue("@unit", unit);
+                        cmd.Parameters.AddWithValue("@price", price);
+                        cmd.Parameters.AddWithValue("@harvestDate", harvestDate);
+                        cmd.Parameters.AddWithValue("@expiryDate", expiryDate);
+                        cmd.Parameters.AddWithValue("@location", location);
+                        var ctr = cmd.ExecuteNonQuery();
+                        if (ctr == 1)
+                        {
+                            Session["prodID"] = "";
+                            Session["product"] = "";
+                            Response.Redirect("sellersproduct.aspx", false);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<pre style='background: white;'>" + ex.ToString() + "</pre><script>alert('Something went wrong');</script>");
+            }
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

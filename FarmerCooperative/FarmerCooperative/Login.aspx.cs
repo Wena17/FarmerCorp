@@ -42,6 +42,7 @@ namespace FarmerCooperative
                             while (rdr.Read())
                             {
                                 Response.Write("<script>alert('Hello " + rdr["Fname"].ToString() + "');</script>");
+                                Session["product"] = "";
                                 Session["id"] = rdr.GetValue(rdr.GetOrdinal("ID")).ToString();
                                 Session["userID"] = rdr.GetValue(rdr.GetOrdinal("userID")).ToString();
                                 Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString();

@@ -70,6 +70,12 @@ namespace FarmerCooperative
                     Response.Write("<pre style='background: white;'>" + ex.ToString() + "</pre><script>alert('Something went wrong');</script>");
                 }
             }
+            else if (e.CommandName == "prodUpdate")
+            {
+                Session["product"] = "change";
+                Session["prodID"] = prodID;
+                Response.Redirect("addproduct.aspx", false);
+            }
         }
 
         public void deleteImg()
@@ -101,6 +107,7 @@ namespace FarmerCooperative
                                 if (File.Exists(Path.Combine(folder, imgname)))
                                 {
                                     File.Delete(Path.Combine(folder, imgname));
+                                    Session["prodID"] = "";
                                 }
                                 else
                                 {

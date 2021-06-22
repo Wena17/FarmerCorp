@@ -49,7 +49,6 @@ namespace FarmerCooperative
             {
                 Response.Write("<script>alert('"+ ex.Message +"');</script>");
             }
-            Session["product"] = "";
         }
 
         protected void signup_Click(object sender, EventArgs e)

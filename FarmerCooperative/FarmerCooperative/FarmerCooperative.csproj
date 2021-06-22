@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddProduct.aspx" />
+    <Content Include="AllProduct.aspx" />
     <Content Include="App_Data\FarmerDB.mdf" />
     <Content Include="App_Data\FarmerDB_log.ldf">
       <DependentUpon>FarmerDB.mdf</DependentUpon>
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllProduct.aspx.cs">
+      <DependentUpon>AllProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllProduct.aspx.designer.cs">
+      <DependentUpon>AllProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>

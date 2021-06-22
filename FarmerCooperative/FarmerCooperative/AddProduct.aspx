@@ -18,7 +18,7 @@
                         <div class="card-header" id="Changes" runat="server">
                             <div class="form-group d-flex justify-content-between">
                                 <h3 class="text-center font-weight-light my-2">&nbsp;</h3>
-                                <h3 class="text-center font-weight-light my-2">Edit | Delete Product</h3>
+                                <h3 class="text-center font-weight-light my-2">Update Product</h3>
                                 <asp:Button class="btn btn-close" ID="btnCClose" runat="server" CausesValidation="False" OnClick="btnclose_Click" />
                             </div>
                         </div>
@@ -60,11 +60,11 @@
                                         <asp:TextBox class="form-control" ID="txtQuantity" runat="server" TextMode="Number"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-3" id="CUnit" runat="server">
+                                <div class="col-md-2" id="CUnit" runat="server">
                                     <div class="form-group">
                                         <label class="col-form-label" for="txtCUnit">Unit</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtCUnit" runat="server" ErrorMessage="*Enter the quantity*" ControlToValidate="txtCUnit" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control" ID="txtCUnit" runat="server" TextMode="Number"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rqrtxtCUnit" runat="server" ErrorMessage="*" ControlToValidate="txtCUnit" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:TextBox class="form-control" ID="txtCUnit" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-2" id="Unit" runat="server">
@@ -128,8 +128,7 @@
                             <label class="font-weight-light text-danger" id="imgNote" runat="server">**Make sure you uploaded the right image for the product before clicking submit</label>
                             <div class="form-group d-flex align-items-center justify-content-evenly mt-3 mb-3">
                                 <asp:Button class="btn btn-success btn-lg" ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                                <asp:Button class="btn btn-info btn-lg" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click"/>
-                                <asp:Button class="btn btn-danger btn-lg" ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
+                                <asp:Button class="btn btn-info btn-lg" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
                                 <asp:Button class="btn btn-warning btn-lg" ID="btnClear" runat="server" Text="Clear" CausesValidation="False" OnClick="btnClear_Click" />
                             </div>
                         </div>
