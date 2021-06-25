@@ -11,46 +11,7 @@ namespace FarmerCooperative
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (Session["role"] == null)
-                {
 
-                    sellernavbarDropdown.Visible = false;
-                    buyerDropdown.Visible = false;
-                    adminDropdown.Visible = false;
-                    btnlogin.Visible = true;
-                    signup.Visible = true;
-                }
-                else if (Session["role"].Equals("seller"))
-                {
-                    //lblUser.Text = Session["firstname"].ToString();
-                    sellernavbarDropdown.Visible = true;
-                    buyerDropdown.Visible = false;
-                    adminDropdown.Visible = false;
-                    btnlogin.Visible = false;
-                    signup.Visible = false;
-                }
-                else if (Session["role"].Equals("buyer"))
-                {
-                    sellernavbarDropdown.Visible = false;
-                    buyerDropdown.Visible = true;
-                    adminDropdown.Visible = false;
-                    btnlogin.Visible = false;
-                    signup.Visible = false;
-                }
-                else if (Session["role"].Equals("admin"))
-                {
-                    sellernavbarDropdown.Visible = false;
-                    buyerDropdown.Visible = false;
-                    adminDropdown.Visible = true;
-                    btnlogin.Visible = false;
-                    signup.Visible = false;
-                }
-            } catch(Exception ex)
-            {
-                Response.Write("<script>alert('"+ ex.Message +"');</script>");
-            }
         }
 
         protected void signup_Click(object sender, EventArgs e)
@@ -97,6 +58,31 @@ namespace FarmerCooperative
         protected void btnSales_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            Session["product"] = "";
+            Response.Redirect("addproduct.aspx", false);
+        }
+
+        protected void btnSBaddProduct_Click(object sender, EventArgs e)
+        {
+            Session["product"] = "";
+            Response.Redirect("addproduct.aspx", false);
+        }
+
+        protected int Item_Count()
+        {
+            Dictionary<int, float> cart = (Dictionary<int, float>)Session["cart"];
+            if (cart == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return cart.Count;
+            }
         }
     }
 }

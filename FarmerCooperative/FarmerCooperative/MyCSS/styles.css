@@ -7026,6 +7026,10 @@ textarea.form-control-lg {
   margin-left: 3rem !important;
 }
 
+.ms-7 {
+    margin-left: 5rem !important;
+}
+
 .ms-auto {
   margin-left: auto !important;
 }
@@ -7052,6 +7056,10 @@ textarea.form-control-lg {
 
 .p-5 {
   padding: 3rem !important;
+}
+
+.p-7 {
+    padding: 5rem !important;
 }
 
 .px-0 {
@@ -7367,6 +7375,11 @@ textarea.form-control-lg {
 
 .text-white {
   color: #fff !important;
+}
+
+.text-to-bottom {
+    color: antiquewhite;
+    background: linear-gradient(to bottom right, #79bb8c, #539156, #61b876);
 }
 
 .text-body {
@@ -11003,7 +11016,7 @@ p {
   .product-item .product-item-img {
     position: relative;
     z-index: 0;
-    max-width: 60vw;
+    max-width: 50vw;
   }
   .product-item .product-item-description {
     position: relative;
@@ -11011,6 +11024,21 @@ p {
     margin-top: -3rem;
     max-width: 50vw;
   }
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: antiquewhite;
+    }
+    .product-item-img:hover .overlay{
+        opacity: 0.4;
+    }
 }
 
 .list-hours {
@@ -11035,4 +11063,42 @@ p {
 
 .address strong {
   font-size: 1.2rem;
+}
+
+.responsive {
+    width: 100%;
+    height: 200px;
+}
+
+@media screen and (max-width: 700px) {
+    .responsive {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 1470px) {
+    .responsive {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.prodImg {
+    width: 100%;
+    height: 200px;
+}
+
+@media screen and (max-width: 700px) {
+    .prodImg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 1470px) {
+    .prodImg {
+        width: 100%;
+        height: 200px;
+    }
 }

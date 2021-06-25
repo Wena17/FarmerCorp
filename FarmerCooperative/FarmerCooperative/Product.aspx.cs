@@ -11,7 +11,20 @@ namespace FarmerCooperative
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["category"] = "";
+        }
 
+        protected void btnCategory_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Session["category"] = btn.CommandArgument.ToString();
+            Response.Redirect("allproduct.aspx", false);
+        }
+        protected void imgbtnCategory_Click(object sender, EventArgs e)
+        {
+            ImageButton imgbtn = (ImageButton)sender;
+            Session["category"] = imgbtn.CommandArgument.ToString();
+            Response.Redirect("allproduct.aspx", false);
         }
     }
 }

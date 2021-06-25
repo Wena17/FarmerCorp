@@ -23,8 +23,7 @@ namespace FarmerCooperative
             }
             else
             {
-                string command = SqlDataSource1.SelectCommand;
-                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT WHERE SELLERID = '" + Session["userID"].ToString() + "'";
+                SqlDataSource1.SelectCommand = "SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.location, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2 FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id AND SELLERID = '" + Session["userID"].ToString() + "'";
                 SqlDataSource1.DataBind();
                 productList.DataBind();
             }
@@ -123,6 +122,11 @@ namespace FarmerCooperative
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("homepage.aspx", false);
         }
     }
 }

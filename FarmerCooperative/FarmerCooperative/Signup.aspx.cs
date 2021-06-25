@@ -29,7 +29,7 @@ namespace FarmerCooperative
             string mname = txtMname.Text;
             string password = txtPassword.Text;
             string email = txtEmail.Text;
-            string address = txtAddress.Text + ", " +  txtCity.Text + ", " + ddlProvince.SelectedValue + ", " + txtZipcode.Text;
+            string address = txtAddress.Text + ", " + txtbrgy.Text + ", " +  ddlCity.SelectedValue;
             string phoneNo = txtPhoneNo.Text;
             int role;
             if (Session["whoUse"].Equals("seller")) { role = 1; }
@@ -76,6 +76,7 @@ namespace FarmerCooperative
                             Response.Write("<script>alert('Your User id is " + userId + "');</script>");
                             chooseHeader.Visible = true;
                             choose.Visible = true;
+                            ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Successfully created an account');window.location='login.aspx';", true);
                         }
                     }
                 }
@@ -100,12 +101,12 @@ namespace FarmerCooperative
 
         protected void btnSeller_Click(object sender, EventArgs e)
         {
+            Session["whoUse"] = "seller";
             chooseHeader.Visible = false;
             choose.Visible = false;
             signupHeader.Visible = true;
             fillIn.Visible = true;
             fillFooter.Visible = true;
-            Session["whoUse"] = "seller";
         }
 
         protected void btnBuyer_Click(object sender, EventArgs e)

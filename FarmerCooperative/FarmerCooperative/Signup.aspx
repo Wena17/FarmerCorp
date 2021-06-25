@@ -73,51 +73,85 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="col-form-label" for="txtConfirmPass">Confirm Password</label>
+                                            <asp:CompareValidator runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPass" ErrorMessage="Incorrect password" SetFocusOnError="True" ForeColor="Red"></asp:CompareValidator>
                                             <asp:TextBox class="form-control py-4" ID="txtConfirmPass" runat="server" placeholder="•••••••••••••"  TextMode="Password"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
                                     <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="ddlProvince">Province</label>
-                                            <asp:RequiredFieldValidator ID="rqrProvince" runat="server" ErrorMessage="*" ControlToValidate="ddlProvince" ForeColor="Red" SetFocusOnError="True" InitialValue="Select"></asp:RequiredFieldValidator>
-                                            <asp:DropDownList class="form-control" ID="ddlProvince" runat="server">
-                                                <asp:ListItem Text="Select" Value="Select" />
-                                                <asp:ListItem Text="Abra" Value="Abra" />
-                                                <asp:ListItem Text="Agusan del Norte" Value="Agusan del Norte" />
-                                                <asp:ListItem Text="Agusan del Sur" Value="Agusan del Sur" />
-                                                <asp:ListItem Text="Aklan" Value="Aklan" />
-                                                <asp:ListItem Text="Albay" Value="Albay" />
-                                                <asp:ListItem Text="Antique" Value="Antique" />
-                                                <asp:ListItem Text="Apayo" Value="Apayo" />
-                                                <asp:ListItem Text="Aurora" Value="Aurora" />
-                                                <asp:ListItem Text="Cebu" Value="Cebu" />
-                                                <asp:ListItem Text="Eastern Samar" Value="Eastern Samar" />
-                                                <asp:ListItem Text="Guimaras" Value="Guimaras" />
-                                                <asp:ListItem Text="Ifugao" Value="Ifugao" />
+                                            <label for="ddlCity">Municipality/City</label>
+                                            <asp:RequiredFieldValidator ID="rqrProvince" runat="server" ErrorMessage="*" ControlToValidate="ddlCity" ForeColor="Red" SetFocusOnError="True" InitialValue="Select"></asp:RequiredFieldValidator>
+                                            <asp:DropDownList CssClass="form-control" ID="ddlCity" runat="server">
+                                                <asp:ListItem Text="City" Value="Select" />
+                                                <asp:ListItem Text="Alcantara" Value="Alcantara" />
+                                                <asp:ListItem Text="Alcoy" Value="Alcoy" />
+                                                <asp:ListItem Text="Alegria" Value="Alegria" />
+                                                <asp:ListItem Text="Aloguinsan" Value="Aloguinsan" />
+                                                <asp:ListItem Text="Argao" Value="Argao" />
+                                                <asp:ListItem Text="Asturias" Value="Asturias" />
+                                                <asp:ListItem Text="Badian" Value="Badian" />
+                                                <asp:ListItem Text="Balamban" Value="Balamban" />
+                                                <asp:ListItem Text="Bantayan" Value="Bantayan" />
+                                                <asp:ListItem Text="Barili" Value="Barili" />
+                                                <asp:ListItem Text="Bogo City" Value="Bogo City" />
+                                                <asp:ListItem Text="Boljoon" Value="Boljoon" />
+                                                <asp:ListItem Text="Borbon" Value="Borbon" />
+                                                <asp:ListItem Text="Carcar City" Value="Carcar City" />
+                                                <asp:ListItem Text="Carmen" Value="Carmen" />
+                                                <asp:ListItem Text="Catmon" Value="Catmon" />
+                                                <asp:ListItem Text="Cebu City" Value="Cebu City" />
+                                                <asp:ListItem Text="Compostela" Value="Compostela" />
+                                                <asp:ListItem Text="Consolacion" Value="Consolacion" />
+                                                <asp:ListItem Text="Cordova" Value="Cordova" />
+                                                <asp:ListItem Text="Daanbatayan" Value="Daanbatayan" />
+                                                <asp:ListItem Text="Dalaguete" Value="Dalaguete" />
+                                                <asp:ListItem Text="Danao City" Value="Danao City" />
+                                                <asp:ListItem Text="Dumanjug" Value="Dumanjug" />
+                                                <asp:ListItem Text="Ginatilan" Value="Ginatilan" />
+                                                <asp:ListItem Text="Liloan" Value="Liloan" />
+                                                <asp:ListItem Text="Lapu-lapu City" Value="Lapu-lapu City" />
+                                                <asp:ListItem Text="Madridejos" Value="Madridejos" />
+                                                <asp:ListItem Text="Malabuyoc" Value="Malabuyoc" />
+                                                <asp:ListItem Text="Mandaue City" Value="Mandaue City" />
+                                                <asp:ListItem Text="Medellin" Value="Medellin" />
+                                                <asp:ListItem Text="Minglanilla" Value="Minglanilla" />
+                                                <asp:ListItem Text="Moalboal" Value="Moalboal" />
+                                                <asp:ListItem Text="Oslob" Value="Oslob" />
+                                                <asp:ListItem Text="Pilar" Value="Pilar" />
+                                                <asp:ListItem Text="Pinamungajan" Value="Pinamungajan" />
+                                                <asp:ListItem Text="Poro" Value="Poro" />
+                                                <asp:ListItem Text="Ronda" Value="Ronda" />
+                                                <asp:ListItem Text="Samboan" Value="Samboan" />
+                                                <asp:ListItem Text="San Fernando" Value="San Fernando" />
+                                                <asp:ListItem Text="San Francisco" Value="San Francisco" />
+                                                <asp:ListItem Text="San Remegio" Value="San Remegio" />
+                                                <asp:ListItem Text="Santa Fe" Value="Santa Fe" />
+                                                <asp:ListItem Text="Santander" Value="Santander" />
+                                                <asp:ListItem Text="Sibonga" Value="Sibonga" />
+                                                <asp:ListItem Text="Sogod" Value="Sogod" />
+                                                <asp:ListItem Text="Tabogon" Value="Tabogon" />
+                                                <asp:ListItem Text="Tabuelan" Value="Tabuelan" />
+                                                <asp:ListItem Text="Talisay City" Value="Talisay City" />
+                                                <asp:ListItem Text="Toledo City" Value="Toledo City" />
+                                                <asp:ListItem Text="Tuburan" Value="Tuburan" />
+                                                <asp:ListItem Text="Tudela" Value="Tudela" />
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="txtCity">Municipality/City</label>
-                                            <asp:RequiredFieldValidator ID="rqrCity" runat="server" ErrorMessage="*" ControlToValidate="txtCity" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                            <asp:TextBox class="form-control" ID="txtCity" runat="server" placeholder="City" ></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtZipcode">Zipcode</label>
-                                            <asp:RequiredFieldValidator ID="rqrZip" runat="server" ErrorMessage="*" ControlToValidate="txtZipcode" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                            <asp:TextBox class="form-control" ID="txtZipcode" runat="server" placeholder="Zipcode"></asp:TextBox>
+                                            <label for="txtbrgy">Barangay</label>
+                                            <asp:RequiredFieldValidator ID="rqrZip" runat="server" ErrorMessage="*" ControlToValidate="txtbrgy" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                            <asp:TextBox class="form-control" ID="txtbrgy" runat="server" placeholder="Barangay"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="txtAddress">Address</label>
                                     <asp:RequiredFieldValidator ID="rqrAddress" runat="server" ErrorMessage="*" ControlToValidate="txtAddress" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                    <asp:TextBox class="form-control" ID="txtAddress" runat="server" placeholder="House #, Street, Barangay" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                                    <asp:TextBox class="form-control" ID="txtAddress" runat="server" placeholder="House #, Street" TextMode="MultiLine" Rows="2"></asp:TextBox>
                                 </div>
                                 <div class="row">
                                     <div class="col">

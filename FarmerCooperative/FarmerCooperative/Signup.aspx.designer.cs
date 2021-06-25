@@ -168,31 +168,13 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrProvince;
 
         /// <summary>
-        /// ddlProvince control.
+        /// ddlCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
-
-        /// <summary>
-        /// rqrCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrCity;
-
-        /// <summary>
-        /// txtCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCity;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCity;
 
         /// <summary>
         /// rqrZip control.
@@ -204,13 +186,13 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrZip;
 
         /// <summary>
-        /// txtZipcode control.
+        /// txtbrgy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtZipcode;
+        protected global::System.Web.UI.WebControls.TextBox txtbrgy;
 
         /// <summary>
         /// rqrAddress control.

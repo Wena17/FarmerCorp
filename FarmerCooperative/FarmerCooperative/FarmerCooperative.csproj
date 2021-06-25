@@ -74,21 +74,24 @@
     <Content Include="App_Data\FarmerDB_log.ldf">
       <DependentUpon>FarmerDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Cart.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="imgs\1LOGO.png" />
     <Content Include="imgs\about.jpg" />
-    <Content Include="imgs\bg.jpg" />
-    <Content Include="imgs\farm-themed.jpg" />
+    <Content Include="imgs\beans.jpg" />
+    <Content Include="imgs\cart.png" />
     <Content Include="imgs\Farm.jpg" />
     <Content Include="imgs\favicon.ico" />
     <Content Include="imgs\freshly-harvested.jpg" />
     <Content Include="imgs\fruits.jpg" />
     <Content Include="imgs\generaluser.png" />
-    <Content Include="imgs\intro.jpg" />
+    <Content Include="imgs\grains.jpg" />
+    <Content Include="imgs\Nuts.jpg" />
     <Content Include="imgs\products-01.jpg" />
     <Content Include="imgs\products-02.jpg" />
     <Content Include="imgs\products-03.jpg" />
+    <Content Include="imgs\rootcrops.jpg" />
     <Content Include="imgs\Veggies.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MyCSS\styles.css" />
@@ -121,6 +124,13 @@
     </Compile>
     <Compile Include="AllProduct.aspx.designer.cs">
       <DependentUpon>AllProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>

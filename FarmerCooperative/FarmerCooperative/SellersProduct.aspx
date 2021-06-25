@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <div class="form-group d-flex justify-content-between">
                                 <h3 class="text-left font-weight-light my-2">My Products</h3>   
-                                  <asp:Button class="btn btn-close" ID="btnClose" runat="server" CausesValidation="False" />                              
+                                  <asp:Button class="btn btn-close" ID="btnClose" runat="server" CausesValidation="False" OnClick="btnClose_Click" />                              
                             </div>
                         </div>
                
@@ -38,7 +38,7 @@
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <asp:Label ID="lbl" runat="server" Text="Category:" Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
-                                                                <asp:Label ID="lblType" runat="server" Font-Bold="True" Text='<%# Eval("type") %>' Font-Names="Arvo" Font-Size="Large"></asp:Label>
+                                                                <asp:Label ID="lblType" runat="server" Font-Bold="True" Text='<%# Eval("Expr2") %>' Font-Names="Arvo" Font-Size="Large"></asp:Label>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -68,7 +68,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <asp:Image CssClass="img-fluid p-2" ID="productImg" runat="server" ImageUrl='<%# Eval("imgPath") %>' />
+                                                        <asp:Image CssClass="img-fluid p-2 prodImg" ID="productImg" runat="server" ImageUrl='<%# Eval("imgPath") %>' />
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +88,7 @@
 
                                 </Columns>                                
                             </asp:GridView>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [PRODUCT]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.location, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2 FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id"></asp:SqlDataSource>
                         </div>
                         </div>
                     </div>

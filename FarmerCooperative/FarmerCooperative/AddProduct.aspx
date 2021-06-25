@@ -38,17 +38,12 @@
                             <div class="form-group">
                                 <label class="col-form-label" for="txtProductName">Product Name</label>
                                 <asp:RequiredFieldValidator ID="rqrtxtProductName" runat="server" ErrorMessage="*Please enter the name*" ControlToValidate="txtProductName" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                <asp:TextBox class="form-control py-4" ID="txtProductName" runat="server" placeholder="Apple"></asp:TextBox>
+                                <asp:TextBox CssClass="form-control py-4" ID="txtProductName" runat="server" placeholder="Apple"></asp:TextBox>
                             </div>
-                            <div class="form-group" id="CType" runat="server">
-                                <label class="col-form-label" for="txtCType">Type</label>
-                                <asp:RequiredFieldValidator ID="rqrtxtCType" runat="server" ErrorMessage="*Enter the quantity*" ControlToValidate="txtCType" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                <asp:TextBox class="form-control" ID="txtCType" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="form-group" id="Type" runat="server">
+                            <div class="form-group">
                                 <label class="col-form-label" for="txtType">Type</label>
                                 <asp:RequiredFieldValidator ID="rqrddlType" runat="server" ErrorMessage="*Please choose a product type*" ControlToValidate="ddlType" ForeColor="Red" SetFocusOnError="True" InitialValue="Select"></asp:RequiredFieldValidator>
-                                <asp:DropDownList class="form-control" ID="ddlType" runat="server" AppendDataBoundItems="True">
+                                <asp:DropDownList CssClass="form-control" ID="ddlType" runat="server" AppendDataBoundItems="True">
                                     <asp:ListItem Text="--Select one--" Value="Select" />
                                 </asp:DropDownList>
                             </div>
@@ -60,21 +55,14 @@
                                         <asp:TextBox class="form-control" ID="txtQuantity" runat="server" TextMode="Number"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-2" id="CUnit" runat="server">
-                                    <div class="form-group">
-                                        <label class="col-form-label" for="txtCUnit">Unit</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtCUnit" runat="server" ErrorMessage="*" ControlToValidate="txtCUnit" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control" ID="txtCUnit" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-2" id="Unit" runat="server">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="col-form-label" for="ddlUnit">Unit</label>
-                                        <asp:RequiredFieldValidator ID="rqrUnit" runat="server" ErrorMessage="*" ControlToValidate="ddlUnit" ForeColor="Red" SetFocusOnError="True" InitialValue="Select"></asp:RequiredFieldValidator>
-                                        <asp:DropDownList class="form-control" ID="ddlUnit" runat="server">
-                                                <asp:ListItem Text="Select" Value="Select" />
-                                                <asp:ListItem Text="kilogram" Value="kg" />
-                                                <asp:ListItem Text="pieces" Value="pcs" />
+                                        <asp:RequiredFieldValidator ID="rqrUnit" runat="server" ErrorMessage="*" ControlToValidate="ddlUnit" ForeColor="Red" SetFocusOnError="True" InitialValue=" "></asp:RequiredFieldValidator>
+                                        <asp:DropDownList class="form-control" ID="ddlUnit" runat="server" AppendDataBoundItems="True">
+                                            <asp:ListItem Text="kilogram" Value="kilogram" />
+                                            <asp:ListItem Text="pieces" Value="pieces" />
+                                            <asp:ListItem Text="sack" Value="sack" />
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -86,23 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"  id="CDate" runat="server">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-form-label" for="txtCHarvestDate">Harvest Date</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtCHarvestDate" runat="server" ControlToValidate="txtCHarvestDate" ErrorMessage="*Required*" Display="Dynamic" ForeColor="red"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control py-4" ID="txtCHarvestDate" runat="server" ></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-form-label" for="txtCExpiryDate">Expiry Date</label>
-                                        <asp:RequiredFieldValidator ID="rqrtxtCExpiryDate" runat="server" ControlToValidate="txtCExpiryDate" ErrorMessage="*Please select a date*" Display="Dynamic" ForeColor="red"></asp:RequiredFieldValidator>
-                                        <asp:TextBox class="form-control py-4" ID="txtCExpiryDate" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" id="Dates" runat="server">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="col-form-label" for="txtHarvestDate">Harvest Date</label>
