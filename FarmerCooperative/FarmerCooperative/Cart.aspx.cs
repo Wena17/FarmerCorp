@@ -17,18 +17,31 @@ namespace FarmerCooperative
         string con = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
         public void Page_Load(object sender, EventArgs e)
         {
-            if(CartItems().Count == 0)
+            checkout.Visible = false;
+            if (CartItems().Count == 0)
             {
                 cartStatus.Visible = true;
                 btnCheckout.Visible = false;
+                cart.Visible = false;
             }
             else
             {
                 cartStatus.Visible = false;
-                btnCheckout.Visible = true;
+                if (Session["userID"] == null || Session["userID"].ToString().Length == 0)
+                {
+                    btnCheckout.Visible = true;
+                    payment.Visible = false;
+                    cart.Visible = true;
+                }
+                else
+                {
+                    cart.Visible = true;
+                    btnCheckout.Visible = false;
+                    payment.Visible = true;
+                }
             }
         }
-         
+
         public ArrayList CartItems()
         {
             ArrayList items = new ArrayList();
@@ -73,6 +86,16 @@ namespace FarmerCooperative
             return items;
         }
 
+        public double CartTotal()
+        {
+            double total = 0;
+            foreach (CartItem item in CartItems())
+            {
+                total += item.Subtotal;
+            }
+            return total;
+        }
+
         public int CartItemCount()
         {
             Dictionary<int, float> cart = (Dictionary<int, float>)Session["cart"];
@@ -96,17 +119,111 @@ namespace FarmerCooperative
             Response.Redirect("homepage.aspx", false);
         }
 
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("allproduct.aspx", false);
+        }
+
+        protected void btnCheckoutClose_Click(object sender, EventArgs e)
+        {
+            checkout.Visible = false;
+            cart.Visible = true;
+        }
+
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx", false);
+        }
+
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static void PaymentComplete()
+        {
+            string connection = ConfigurationManager.ConnectionStrings["FarmerDBF"].ConnectionString;
+            Dictionary<int, float> cart = (Dictionary<int, float>)HttpContext.Current.Session["cart"];
+            string sellerID = "";
+            double price = 0.00;
+            var failedProducts = new HashSet<int>();
+
+            foreach (int prodId in cart.Keys)
+            {
+                using (var db = new SqlConnection(connection))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                    }
+                    using (var cmd = db.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT SELLERID, PRICE FROM PRODUCT WHERE ID = @prodID";
+                        cmd.Parameters.AddWithValue("@prodID", prodId);
+                        SqlDataReader rd = cmd.ExecuteReader();
+                        if (rd.Read())
+                        {
+                            sellerID = rd["SELLERID"].ToString();
+                            price = Convert.ToDouble(rd["PRICE"].ToString());
+                        }
+                    }
+                    using (var cmd1 = db.CreateCommand())
+                    {
+                        // 1. Reduce the amounts for the products.
+                        // Here, we should check if there is still enough of the product left, because someone else might have bought it before we hit checkout.
+                        cmd1.CommandText = "UPDATE PRODUCT "
+                            + " SET QUANTITY -= @prodqty "
+                            + " WHERE ID = @id";
+                        cmd1.Parameters.AddWithValue("@id", prodId);
+                        cmd1.Parameters.AddWithValue("@prodqty", cart[prodId]);
+                        var ctr = cmd1.ExecuteNonQuery();
+
+                        if (ctr == 1)
+                        {
+                            // 2. Create a sales record.
+                            cmd1.CommandType = CommandType.Text;
+                            cmd1.CommandText = "INSERT INTO SALE(PRODUCTID, BUYERID, SELLER, QUANTITY, AMOUNT, PAYMENT) "
+                                + " VALUES ( "
+                                + " @prodID, "
+                                + " @buyerID, "
+                                + " @seller, "
+                                + " @qty, "
+                                + " @amt, "
+                                + " @payment)";
+                            cmd1.Parameters.AddWithValue("@prodID", prodId);
+                            cmd1.Parameters.AddWithValue("@buyerID", HttpContext.Current.Session["userID"].ToString());
+                            cmd1.Parameters.AddWithValue("@seller", sellerID.ToString());
+                            cmd1.Parameters.AddWithValue("@qty", cart[prodId]);
+                            cmd1.Parameters.AddWithValue("@amt", price);
+                            cmd1.Parameters.AddWithValue("@payment", "paypal");
+                            ctr = cmd1.ExecuteNonQuery();
+
+                        }
+                        else
+                        {
+                            failedProducts.Add(prodId);
+                        }
+
+                    }
+                }
+            }
+
+            // 3. Empty the cart but keep the "failed" products. If the result is not empty, we should say so on the CheckoutComplete page.
+            HttpContext.Current.Session["cart"] = failedProducts.ToDictionary(p => p, p => cart[p]);
+
+            // 4. Redirect to a success page.
+            HttpContext.Current.Response.Redirect("CheckoutComplete.aspx");
+        }
     }
 
     public class CartItem
     {
-        public int ProductId { get;  set; }
+        public int ProductId { get; set; }
 
         public float Amount { get; set; }
 
-        public string ProductName { get;  set; }
+        public string ProductName { get; set; }
 
-        public double Price { get;  set; }
+        public double Price { get; set; }
 
         public double Subtotal { get { return Amount * Price; } }
     }

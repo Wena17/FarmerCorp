@@ -16,7 +16,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body>    
     <form runat="server">
         <div class="container-fluid">
        <header>
@@ -35,30 +35,31 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="product.aspx">Products</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.aspx">About</a></li>
                     </ul>
-                    <ul class="navbar-nav">  
+                    <ul class="navbar-nav">
+                    <% if (Session["role"] == null) {  %>  
                         <li class="nav-item pt-2 px-lg-4 text-warning btn"><a href="cart.aspx"><i class="fas fa-shopping-cart"></i> <%= Item_Count() %></a></li>
-                    <% if (Session["role"] == null) {  %>
                         <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="signup" runat="server" OnClick="signup_Click" CausesValidation="false">Sign up</asp:LinkButton></li>
                         <li class="nav-item px-lg-4"><asp:LinkButton class="nav-link text-uppercase" ID="btnlogin" runat="server" OnClick="btnlogin_Click" CausesValidation="False"><img width="28" class="nav-item" src="imgs/generaluser.png" />&nbsp;&nbsp;Login</asp:LinkButton></li> 
                     <% }  else if (Session["role"].Equals("seller")) { %>
                         <li class="nav-item dropdown">                        
                             <asp:LinkButton class="nav-link dropdown-toggle" ID="sellernavbarDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%= Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="sellernavbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="profile.aspx">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="SellersProduct.aspx">All Products</a></li>
-                                <li><asp:Button class="dropdown-item" ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" /></li>
-                                <li><asp:Button class="dropdown-item" ID="btnSales" runat="server" Text="Sales" OnClick="btnSales_Click" /></li>    
+                                <li><asp:Button class="dropdown-item" ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" CausesValidation="false" /></li>
+                                <li><asp:Button class="dropdown-item" ID="btnSales" runat="server" Text="Sales" OnClick="btnSales_Click" CausesValidation="false" /></li>    
                                 <li class="dropdown-item"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CausesValidation="False">Log out</asp:LinkButton></li>
                             </ul>                            
                         </li>
-                    <% }  else if (Session["role"].Equals("buyer")) { %>
+                    <% }  else if (Session["role"].Equals("buyer")) { %>  
+                        <li class="nav-item pt-2 px-lg-4 text-warning btn"><a href="cart.aspx"><i class="fas fa-shopping-cart"></i> <%=  Item_Count() %></a></li>
                         <li class="nav-item dropdown" style="left: 0px; top: 0px">
                             <asp:LinkButton class="nav-link dropdown-toggle" ID="buyerDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%= Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="buyerDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="profile.aspx">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Purchases</a></li>
+                                <li><a class="dropdown-item" href="purchases.aspx">Purchases</a></li>
                                 <li class="dropdown-item"><asp:LinkButton ID="btnLogout1" OnClick="btnLogout1_Click" runat="server" CausesValidation="False">Log out</asp:LinkButton></li>
                             </ul>                            
                         </li>
@@ -71,16 +72,17 @@
                                 <li class="dropdown-item"><asp:LinkButton ID="btnLogout2" OnClick="btnLogout2_Click" runat="server" CausesValidation="False">Log out</asp:LinkButton></li>
                             </ul>                            
                         </li>
-                    <% }  else if (Session["role"].Equals("sellerbuyer")) { %>
+                    <% }  else if (Session["role"].Equals("sellerbuyer")) { %>  
+                        <li class="nav-item pt-2 px-lg-4 text-warning btn"><a href="cart.aspx"><i class="fas fa-shopping-cart"></i> <%= Item_Count() %></a></li>
                         <li class="nav-item dropdown">
                             <asp:LinkButton class="nav-link dropdown-toggle" ID="SBDropdown" runat="server" role="button" data-toggle="dropdown" aria-expanded="false" CausesValidation="False"><i class="far fa-user"></i> <%=  Session["firstname"].ToString() %></asp:LinkButton>
                             <ul class="dropdown-menu" aria-labelledby="SBDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="profile.aspx">Profile</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="SellersProduct.aspx">All Products</a></li>
-                                <li><asp:Button class="dropdown-item" ID="btnSBaddProduct" runat="server" Text="Add Product" OnClick="btnSBaddProduct_Click"/></li>
-                                <li><asp:Button class="dropdown-item" ID="btnSBSales" runat="server" Text="Sales"/></li>   
-                                <li><a class="dropdown-item" href="#!">Purchases</a></li>                                
+                                <li><asp:Button class="dropdown-item" ID="btnSBaddProduct" runat="server" Text="Add Product" OnClick="btnSBaddProduct_Click" CausesValidation="false"/></li>
+                                <li><asp:Button class="dropdown-item" ID="btnSBSales" runat="server" Text="Sales" CausesValidation="false" OnClick="btnSales_Click" /></li>
+                                <li><a class="dropdown-item" href="purchases.aspx">Purchases</a></li>                                
                                 <li class="dropdown-item"><asp:LinkButton ID="LinkButton2" OnClick="btnLogout2_Click" runat="server" CausesValidation="False">Log out</asp:LinkButton></li>
                             </ul>                            
                         </li>

@@ -147,7 +147,7 @@ namespace FarmerCooperative
                         cmd.CommandText = "UPDATE PRODUCT "
                                 + " SET NAME = @name, "
                                 + " TYPE = @type, "
-                                + " QUANTITY = @quantity, "
+                                + " QUANTITY += @quantity, "
                                 + " UNIT = @unit, "
                                 + " PRICE = @price, "
                                 + " HARVESTDATE = @harvestDate, "

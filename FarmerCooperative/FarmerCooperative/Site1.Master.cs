@@ -57,7 +57,7 @@ namespace FarmerCooperative
 
         protected void btnSales_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("sales.aspx", false);
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace FarmerCooperative
         }
 
         protected int Item_Count()
-        {
+        { 
             Dictionary<int, float> cart = (Dictionary<int, float>)Session["cart"];
             if (cart == null)
             {

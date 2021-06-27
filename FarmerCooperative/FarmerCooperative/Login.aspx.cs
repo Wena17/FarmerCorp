@@ -53,10 +53,10 @@ namespace FarmerCooperative
                                 {
                                     Session["role"] += "seller";
                                 }
-                                else if ((role & 2) != 0) // Role in binary is .1. (= 2) if the user is a buyer.
+                                if ((role & 2) != 0) // Role in binary is .1. (= 2) if the user is a buyer.
                                 {
                                     Session["role"] += "buyer";
-                                    Session["cart"] = new List<String>(); // TODO: This needs to be an instance of Sale that has a product id and a quantity.
+                                    //Session["cart"] = new List<String>(); // TODO: This needs to be an instance of Sale that has a product id and a quantity.
                                 }
                                 else if ((role & 4) != 0) // Role in binary is 1.. (= 4) if the user is an admin.
                                 {
