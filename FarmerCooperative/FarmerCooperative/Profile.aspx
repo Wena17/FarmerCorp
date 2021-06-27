@@ -5,7 +5,7 @@
     <section class="page-section about-heading">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-7">
                 <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor">
                     <div class="card-header">                    
                         <h3 class="text-left font-weight-light my-2">Profile</h3>
@@ -22,7 +22,7 @@
                                         <asp:Image CssClass="img-thumbnail" ID="productImg" runat="server" ImageUrl="~/imgs/generaluser.png" />
                                     </div>
                                     <div class="card-body"> 
-                                        <div class="card-title text-center">
+                                        <div class="card-title">
                                             <asp:Label runat="server" Text='<%# Eval("Description") %>' Font-Names="OPEN SANS" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
                                         </div>
                                         <div class="card-text ml-5">                                            

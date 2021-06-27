@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CheckoutComplete.aspx.cs" Inherits="FarmerCooperative.CheckoutComplete" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .bgColor {
+            background: linear-gradient(to bottom right, #e8f4ea, #e0f0e3,  #d2e7d6, #c8e1cc, #b8d8be);
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row justify-content-center">
