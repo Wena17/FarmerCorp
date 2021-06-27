@@ -38,7 +38,7 @@ namespace FarmerCooperative
                     using (var cmd = db.CreateCommand())
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT * FROM USERS WHERE ([userID] = @userID)";
+                        cmd.CommandText = "SELECT * FROM USERS LEFT JOIN USERSTATUS ON [USERS].[APPROVALSTATUS]=[USERSTATUS].[ID] WHERE ([userID] = @userID)";
                         cmd.Parameters.AddWithValue("@userID", Session["userID"].ToString().Trim());
                         DataTable dt = new DataTable();
                         SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -58,6 +58,18 @@ namespace FarmerCooperative
         protected void btnclose_Click(object sender, EventArgs e)
         {
             Response.Redirect("homepage.aspx", false);
+        }
+
+        public string userStatusString(int statusCode)
+        {
+            switch (statusCode)
+            {
+                case 0: return "Idon't knoe";
+                case 1: return "Idon't care";
+                default: return "whatever";
+                
+
+            }
         }
     }
 }

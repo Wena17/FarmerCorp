@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="card-body"> 
                                         <div class="card-title text-center">
-                                            <asp:Label runat="server" Text='<%# Eval("ApprovalStatus") %>' Font-Names="OPEN SANS" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+                                            <asp:Label runat="server" Text='<%# Eval("Description") %>' Font-Names="OPEN SANS" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
                                         </div>
                                         <div class="card-text ml-5">                                            
                                             <asp:Label CssClass="text-muted" ID="lbl5" runat="server" Text="Available Stock: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>

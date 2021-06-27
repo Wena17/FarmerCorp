@@ -20,7 +20,8 @@
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            PageMethods.PaymentComplete();
+              PageMethods.PaymentComplete();
+              window.location.href = "CheckoutComplete.aspx";
           });
         }
       }).render('#paypal-button-container'); // Display payment options on your web page
@@ -32,7 +33,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor">
+                <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor" runat="server" id="cart">
                 <div class="card-header">
                     <div class="form-group d-flex justify-content-between">
                         <h3 class="text-left font-weight-light my-2">My Shopping Cart</h3>   
@@ -47,7 +48,7 @@
                         </deleteparameters>
                     </asp:objectdatasource>
                     <div class="col-lg-5">
-                        <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor" runat="server" id="cart">                              
+                        <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor" runat="server" id="cartList">                              
                             <div class="card-body">
                                 <asp:gridview CssClass="table" id="shoppingCart" runat="server" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" DataKeyNames="ProductId" >
                                     <Columns>
@@ -81,10 +82,7 @@
                     </div>                    
                     <div class=" d-flex justify-content-around mr-2">
                         <asp:Button CssClass="btn btn-info btn-lg" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" />
-                        <asp:Button CssClass="btn btn-warning btn-lg" ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" />                        
-                    </div>
-                    <div class="d-flex justify-content-end" id="payment" runat="server" visible="false">
-                        <div id="paypal-button-container"></div>
+                        <asp:Button CssClass="btn btn-warning btn-lg" ID="btnCheckout" runat="server" Text="Proceed to Checkout" OnClick="btnCheckout_Click" />                        
                     </div>
                 </div>
                 </div>
@@ -99,15 +97,17 @@
                             <asp:Button class="btn btn-close" ID="btnCheckoutClose" runat="server" CausesValidation="False" OnClick="btnCheckoutClose_Click"/>                              
                     </div>
                 </div>               
-                <div class="card-body">
-                    
+                <div class="card-body">                    
+                    <div class="d-flex justify-content-end">
+                        <div id="paypal-button-container"></div>
+                    </div>
                     <div class=" d-flex justify-content-end mr-2">
                         <asp:Button CssClass="btn btn-warning btn-lg" ID="Proceed" runat="server" Text="Proceed" />
                     </div>
                 </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </section> 
     

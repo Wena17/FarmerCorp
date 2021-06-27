@@ -24,6 +24,15 @@ namespace FarmerCooperative
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// cart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cart;
+
+        /// <summary>
         /// btnClose control.
         /// </summary>
         /// <remarks>
@@ -51,13 +60,13 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
 
         /// <summary>
-        /// cart control.
+        /// cartList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cart;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartList;
 
         /// <summary>
         /// shoppingCart control.
@@ -94,15 +103,6 @@ namespace FarmerCooperative
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCheckout;
-
-        /// <summary>
-        /// payment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl payment;
 
         /// <summary>
         /// checkout control.
