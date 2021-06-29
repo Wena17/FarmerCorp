@@ -42,7 +42,7 @@ namespace FarmerCooperative
                     using (var cmd = db.CreateCommand())
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT * FROM USERS";
+                        cmd.CommandText = "SELECT * FROM USERS WHERE ROLE != 4";
                         DataTable dt = new DataTable();
                         SqlDataAdapter sda = new SqlDataAdapter(cmd);
                         sda.Fill(dt);

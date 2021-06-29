@@ -50,7 +50,6 @@ namespace FarmerCooperative
             double price = Convert.ToDouble(txtPrice.Text);
             string harvestDate = txtHarvestDate.Text;
             string expiryDate = txtExpiryDate.Text;
-            string location = txtAddress.Text;
 
             try
             {
@@ -69,7 +68,7 @@ namespace FarmerCooperative
                         using(var cmd = db.CreateCommand())
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.CommandText = "INSERT INTO PRODUCT(NAME, TYPE, QUANTITY, UNIT, PRICE, HARVESTDATE, EXPIRYDATE, LOCATION, IMGFILENAME, IMGPATH, SELLERID)"
+                            cmd.CommandText = "INSERT INTO PRODUCT(NAME, TYPE, QUANTITY, UNIT, PRICE, HARVESTDATE, EXPIRYDATE, IMGFILENAME, IMGPATH, SELLERID)"
                                 + "VALUES( "
                                 + "@name, "
                                 + "@type, "
@@ -78,7 +77,6 @@ namespace FarmerCooperative
                                 + "@price, "
                                 + "@harvestDate, "
                                 + "@expiryDate, "
-                                + "@location, "
                                 + "@img, "
                                 + "@imgPath, "
                                 + "@sellerID)";
@@ -89,7 +87,6 @@ namespace FarmerCooperative
                             cmd.Parameters.AddWithValue("@price", price);
                             cmd.Parameters.AddWithValue("@harvestDate", harvestDate);
                             cmd.Parameters.AddWithValue("@expiryDate", expiryDate);
-                            cmd.Parameters.AddWithValue("@location", location);
                             cmd.Parameters.AddWithValue("@img", Session["filename"].ToString());
                             cmd.Parameters.AddWithValue("@imgPath", Session["imgPath"].ToString());
                             cmd.Parameters.AddWithValue("@sellerID", Session["userID"].ToString());
@@ -131,7 +128,6 @@ namespace FarmerCooperative
             double price = Convert.ToDouble(txtPrice.Text);
             DateTime harvestDate = Convert.ToDateTime(txtHarvestDate.Text);
             DateTime expiryDate = Convert.ToDateTime(txtExpiryDate.Text);
-            string location = txtAddress.Text;
 
             try
             {
@@ -151,8 +147,7 @@ namespace FarmerCooperative
                                 + " UNIT = @unit, "
                                 + " PRICE = @price, "
                                 + " HARVESTDATE = @harvestDate, "
-                                + " EXPIRYDATE = @expiryDate, "
-                                + " LOCATION = @location "
+                                + " EXPIRYDATE = @expiryDate "
                                 + " WHERE ID = @prodID AND SELLERID = @userID";
                         cmd.Parameters.AddWithValue("@prodID", prodID);
                         cmd.Parameters.AddWithValue("@userID", userID);
@@ -163,7 +158,6 @@ namespace FarmerCooperative
                         cmd.Parameters.AddWithValue("@price", price);
                         cmd.Parameters.AddWithValue("@harvestDate", harvestDate);
                         cmd.Parameters.AddWithValue("@expiryDate", expiryDate);
-                        cmd.Parameters.AddWithValue("@location", location);
                         var ctr = cmd.ExecuteNonQuery();
                         if (ctr == 1)
                         {
@@ -234,7 +228,6 @@ namespace FarmerCooperative
                             txtPrice.Text = rdr["PRICE"].ToString();
                             txtHarvestDate.Text = Convert.ToDateTime(rdr["HARVESTDATE"].ToString()).ToString("yyyy-MM-dd");
                             txtExpiryDate.Text = Convert.ToDateTime(rdr["EXPIRYDATE"].ToString()).ToString("yyyy-MM-dd");
-                            txtAddress.Text = rdr["LOCATION"].ToString();
                             productTypeList();
 
                             ddlType.SelectedIndex = ddlType.Items.IndexOf(ddlType.Items.FindByValue(rdr["TYPE"].ToString()));
@@ -259,7 +252,6 @@ namespace FarmerCooperative
             txtPrice.Text = string.Empty;
             txtHarvestDate.Text = string.Empty;
             txtExpiryDate.Text = string.Empty;
-            txtAddress.Text = string.Empty;
             Session["filename"] = null;
             Session["filename"] = string.Empty;
             Session["imgPath"] = null;

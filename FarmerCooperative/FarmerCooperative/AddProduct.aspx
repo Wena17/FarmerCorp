@@ -90,11 +90,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="txtAddress">Address</label>
-                                <asp:RequiredFieldValidator ID="rqrAddress" runat="server" ErrorMessage="*Please enter your address*" ControlToValidate="txtAddress" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                                <asp:TextBox class="form-control" ID="txtAddress" runat="server" placeholder="House #, Street, Barangay" TextMode="MultiLine" Rows="2"></asp:TextBox>
-                            </div>
                         </div>
                         <div class="card-footer text-center">
                             <label class="font-weight-light text-danger" id="imgNote" runat="server">**Make sure you uploaded the right image for the product before clicking submit</label>

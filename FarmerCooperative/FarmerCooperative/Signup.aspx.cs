@@ -28,8 +28,10 @@ namespace FarmerCooperative
             string lname = txtlname.Text;
             string mname = txtMname.Text;
             string password = txtPassword.Text;
-            string email = txtEmail.Text;
-            string address = txtAddress.Text + ", " + txtbrgy.Text + ", " +  ddlCity.SelectedValue;
+            string email = txtEmail.Text.Trim();
+            string city = ddlCity.SelectedValue.Trim();
+            string brgy = txtbrgy.Text.Trim();
+            string address = txtAddress.Text.Trim();
             string phoneNo = txtPhoneNo.Text;
             int role;
             if (Session["whoUse"].Equals("seller")) { role = 1; }
@@ -49,7 +51,7 @@ namespace FarmerCooperative
                     {
                         cmd.CommandType = CommandType.Text;
                         String userId = fname; // TODO: Add some number to the user id to make it unique.
-                        cmd.CommandText = "INSERT INTO USERS(USERID, FNAME, LNAME, MINITIAL, PASSWORD, EMAIL, ADDRESS, ROLE, PHONE)"
+                        cmd.CommandText = "INSERT INTO USERS(USERID, FNAME, LNAME, MINITIAL, PASSWORD, EMAIL, CITY, BARANGAY, ADDRESS, ROLE, PHONE)"
                             + "VALUES( "
                             + "@userid, "
                             + "@fname, "
@@ -57,6 +59,8 @@ namespace FarmerCooperative
                             + "@mname, "
                             + "@pass, "
                             + "@email, "
+                            + "@city, "
+                            + "@brgy, "
                             + "@add, "
                             + "@role, "
                             + "@phone)";
@@ -67,6 +71,8 @@ namespace FarmerCooperative
                         else { cmd.Parameters.AddWithValue("@mname", mname); }
                         cmd.Parameters.AddWithValue("@pass", password);
                         cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@city", city);
+                        cmd.Parameters.AddWithValue("@brgy", brgy);
                         cmd.Parameters.AddWithValue("@add", address);
                         cmd.Parameters.AddWithValue("@role", role);
                         cmd.Parameters.AddWithValue("@phone", phoneNo);

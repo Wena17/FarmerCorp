@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #bgColor {
+        .bgColor {
             background: linear-gradient(to bottom right, #AAD9CD, #e0f0e3, #d2e7d6, #c8e1cc, #b8d8be);
         }
     </style>
@@ -10,6 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="page-section about-heading">
         <div class="container">
+            <div id="allProduct" runat="server">
             <div class="row breadcrumb d-flex justify-content-end pt-3 pb-3 mb-5">               
                 <div class="col-3">
                     <li class="nav-item dropdown">                        
@@ -30,7 +31,7 @@
                 <asp:Repeater ID="allProductRepeater" runat="server" DataSourceID="SqlDataSource1" EnableViewState="True" OnItemCommand="allProductRepeater_ItemCommand">
                     <ItemTemplate>
                             <div class="col mb-4">
-                                <div class="card shadow-lg border-0 rounded-lg mb-4" id="bgColor">
+                                <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor">
                                     <div class="">
                                         <asp:Image CssClass="shadow-lg card-img-top p-2 responsive" ID="productImg" runat="server" ImageUrl='<%# Eval("imgPath") %>' />
                                     </div>
@@ -57,23 +58,42 @@
                                             <asp:Label ID="lblEDate" runat="server" Text='<%# Eval("expiryDate", "{0:d}") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
                                         </div>
                                         <div class="card-text ml-5">
-                                            <asp:Label CssClass="text-muted" ID="lbl6" runat="server" Text="Address: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
-                                            <asp:Label ID="lblAdd" runat="server" Text='<%# Eval("location") %>' Font-Names="Arvo" Font-Size="Large" Font-Bold="True"></asp:Label>
+                                            <asp:Label CssClass="text-muted" ID="lbl6" runat="server" Text="Location: " Font-Italic="False" Font-Names="Kozuka Gothic Pr6N L" Font-Size="Medium"></asp:Label>
+                                            <asp:LinkButton ID="btnLocation" runat="server" Font-Names="Arvo" Font-Size="Large" Font-Bold="True" OnClick="btnLocation_Click" CommandArgument='<%# Eval("sellerID") %>' > <%# Eval("location") %> </asp:LinkButton>
                                         </div>
                                     </div>                                
                                     <div class="card-footer">
-                                        <asp:Button CssClass="btn w3-block text-to-bottom" ID="btnAddCart" runat="server" Text="Add to Cart"  UseSubmitBehavior="False" CommandName="AddCart" CommandArgument='<%# Eval("Id") %>' />
+                                        <asp:Button CssClass="btn w3-block text-to-bottom" ID="btnAddCart" runat="server" Text="Add to Cart"  UseSubmitBehavior="False" CommandName="AddCart" CommandArgument='<%# Eval("sellerID") %>' />
                                     </div>
                                 </div>
                             </div>
                         </ItemTemplate>
                 </asp:Repeater>
             </div>        
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name)">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.imgFilename, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2, TYPE.description, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE (UPPER(TYPE.name) = UPPER(@cat_name))">
                 <SelectParameters>
                     <asp:SessionParameter Name="cat_name" SessionField="category" DefaultValue="" />
                 </SelectParameters>
-            </asp:SqlDataSource>        
+            </asp:SqlDataSource>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <div id="Address" runat="server" class=" popover-body">
+                        <div class="card shadow-lg mb-4 bgColor">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="font-weight-light my-2">&nbsp;</h3>                    
+                                    <asp:Label class="font-monospace font-weight-bold h4" ID="lblUserHeader" runat="server" Text="Seller Geolocation"></asp:Label>
+                                    <asp:Button class="btn btn-close" ID="btnclose" runat="server" CausesValidation="False" OnClick="btnclose_Click" />
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <iframe width="680" height="400" runat="server" id="gmap_canvas"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </asp:Content>

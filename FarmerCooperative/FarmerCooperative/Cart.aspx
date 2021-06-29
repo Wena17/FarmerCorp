@@ -32,7 +32,7 @@
     <section class="page-section about-heading">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-7">
                 <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor" runat="server" id="cart">
                 <div class="card-header">
                     <div class="form-group d-flex justify-content-between">
@@ -47,7 +47,7 @@
                             <asp:parameter name="ProductId" type="Int32" />
                         </deleteparameters>
                     </asp:objectdatasource>
-                    <div class="col-lg-5">
+                    <div class="col">
                         <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor" runat="server" id="cartList">                              
                             <div class="card-body">
                                 <asp:gridview CssClass="table" id="shoppingCart" runat="server" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" DataKeyNames="ProductId" >
@@ -74,7 +74,7 @@
                                 <div class="row">
                                     <div class="d-flex justify-content-around">
                                         <asp:Label CssClass="font-weight-bolder" runat="server" Text="Total: "></asp:Label>                                            
-                                        <asp:Label CssClass="font-weight-bold" ID="Label1" runat="server" Text='<%# CartTotal() %>'></asp:Label>
+                                        <p><%= CartTotal().ToString() %></p>
                                     </div>
                                 </div>
                             </div>
