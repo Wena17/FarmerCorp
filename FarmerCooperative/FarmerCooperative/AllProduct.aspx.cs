@@ -54,30 +54,64 @@ namespace FarmerCooperative
         {
             Button btn = (Button)sender;
             string sort = btn.CommandArgument.ToString();
-            if (sort.Equals("lh")) {
-                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRICE ASC;";
-                SqlDataSource1.DataBind();
-            }
-            else if (sort.Equals("hl"))
+            switch (sort)
             {
-                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRICE DESC;";
-                SqlDataSource1.DataBind();
-            }
-            else if (sort.Equals("asc"))
-            {
-                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRODUCT.NAME ASC;";
-                SqlDataSource1.DataBind();
-            }
-            else if (sort.Equals("desc"))
-            {
-                SqlDataSource1.SelectCommand = "SELECT * FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRODUCT.NAME DESC;";
-                SqlDataSource1.DataBind();
-            }
-            else
-            {
-                SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location FROM PRODUCT INNER JOIN Users ON PRODUCT.sellerID = Users.userID ";
-                SqlDataSource1.SelectParameters.Clear();
-                SqlDataSource1.DataBind();
+                case "lh":
+                    if(Session["category"] == null || Session["category"].ToString().Length == 0)
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID ORDER BY PRICE ASC";
+                        SqlDataSource1.DataBind();
+                    }
+                    else
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRICE ASC";
+                        SqlDataSource1.DataBind();
+                    }
+                    break;
+                case "hl":
+                    if (Session["category"] == null || Session["category"].ToString().Length == 0)
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID ORDER BY PRICE DESC";
+                        SqlDataSource1.DataBind();
+                    }
+                    else
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRICE DESC";
+                        SqlDataSource1.DataBind();
+                    }
+                    break;
+                case "asc":
+                    if (Session["category"] == null || Session["category"].ToString().Length == 0)
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID ORDER BY PRODUCT.NAME A" +
+                            "SC";
+                        SqlDataSource1.DataBind();
+                    }
+                    else
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRODUCT.NAME ASC";
+                        SqlDataSource1.DataBind();
+                    }
+                    break;
+                case "desc":
+                    if (Session["category"] == null || Session["category"].ToString().Length == 0)
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID ORDER BY PRODUCT.NAME DESC";
+                        SqlDataSource1.DataBind();
+                    }
+                    else
+                    {
+                        SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location  FROM PRODUCT INNER JOIN TYPE ON PRODUCT.TYPE=TYPE.ID INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE UPPER(TYPE.NAME) = UPPER(@cat_name) ORDER BY PRODUCT.NAME DESC";
+                        SqlDataSource1.DataBind();
+                    }
+                    break;
+                default:
+                    Session["category"] = null;
+                    SqlDataSource1.SelectCommand = "SELECT *, Users.Address  + ', ' + Users.barangay + ', ' + Users.city AS Location FROM PRODUCT INNER JOIN Users ON PRODUCT.sellerID = Users.userID ";
+                    SqlDataSource1.SelectParameters.Clear();
+                    SqlDataSource1.DataBind();
+                    break;
+
             }
         }
 

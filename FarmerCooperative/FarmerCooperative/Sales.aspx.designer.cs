@@ -33,13 +33,22 @@ namespace FarmerCooperative
         protected global::System.Web.UI.WebControls.Button btnclose;
 
         /// <summary>
-        /// userView control.
+        /// lblSaleStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView userView;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblSaleStatus;
+
+        /// <summary>
+        /// salesView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView salesView;
 
         /// <summary>
         /// SqlDataSource1 control.

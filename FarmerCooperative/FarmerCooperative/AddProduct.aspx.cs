@@ -18,11 +18,17 @@ namespace FarmerCooperative
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id"] == null && Session["userID"] == null)
+            if (Session["userID"] == null || Session["userID"].ToString().Length == 0)
             {
                 Response.Redirect("login.aspx", false);
-            } 
-            else {
+            }
+            else if (Session["status"].Equals(0))
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert(''Cannot add product yet, because your account is not yet approve. \\nWait for the admin to approve your account');window.location='signup.aspx';", true);
+                Response.Redirect("homepage.aspx", false);
+            }
+            else 
+            {
                 if (Session["product"].Equals("change"))
                 {
                     deactivate();
@@ -222,8 +228,8 @@ namespace FarmerCooperative
 
                             txtProductName.Text = rdr["NAME"].ToString();
                             txtQuantity.Text = rdr["QUANTITY"].ToString();
-                            // TODO: Display the unit in the dropdown 
                             //ddlUnit.SelectedIndex.Equals(rdr["UNIT"].ToString());
+                            ddlUnit.SelectedIndex = ddlType.Items.IndexOf(ddlType.Items.FindByValue(rdr["UNIT"].ToString()));
                             ddlUnit.SelectedIndex = ddlUnit.Items.IndexOf(ddlUnit.Items.FindByValue(rdr["UNIT"].ToString()));
                             txtPrice.Text = rdr["PRICE"].ToString();
                             txtHarvestDate.Text = Convert.ToDateTime(rdr["HARVESTDATE"].ToString()).ToString("yyyy-MM-dd");

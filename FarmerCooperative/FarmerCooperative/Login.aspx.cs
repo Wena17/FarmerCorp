@@ -45,8 +45,8 @@ namespace FarmerCooperative
                                 Session["product"] = "";
                                 Session["id"] = rdr.GetValue(rdr.GetOrdinal("ID")).ToString().Trim();
                                 Session["userID"] = rdr.GetValue(rdr.GetOrdinal("userID")).ToString().Trim();
-                                Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString().Trim();
-                                Session["status"] = rdr.GetValue(rdr.GetOrdinal("APPROVALSTATUS")).ToString().Trim();
+                                Session["firstname"] = rdr.GetValue(rdr.GetOrdinal("Fname")).ToString().Trim() + " " + rdr.GetValue(rdr.GetOrdinal("Lname")).ToString().Trim();
+                                Session["status"] = Convert.ToInt32(rdr.GetValue(rdr.GetOrdinal("APPROVALSTATUS")).ToString().Trim());
                                 int role = Convert.ToInt32(rdr.GetValue(rdr.GetOrdinal("Role")));
                                 Session["role"] = "";
                                 if ((role & 1) != 0) // Role in binary is ..1 (= 1) if the user is a seller.

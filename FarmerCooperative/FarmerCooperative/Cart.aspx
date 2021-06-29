@@ -89,20 +89,17 @@
             </div>
         </div>
         <div class="row justify-content-center" runat="server" id="checkout">
-            <div class="col-lg-10">
+            <div class="col-lg-5">
                 <div class="card shadow-lg border-0 rounded-lg mb-4 bgColor">
                 <div class="card-header">
                     <div class="form-group d-flex justify-content-between">
-                        <h3 class="text-left font-weight-light my-2">Checkout</h3>   
+                        <h3 class="text-left font-weight-light my-2">Payment</h3>   
                             <asp:Button class="btn btn-close" ID="btnCheckoutClose" runat="server" CausesValidation="False" OnClick="btnCheckoutClose_Click"/>                              
                     </div>
                 </div>               
                 <div class="card-body">                    
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-center">
                         <div id="paypal-button-container"></div>
-                    </div>
-                    <div class=" d-flex justify-content-end mr-2">
-                        <asp:Button CssClass="btn btn-warning btn-lg" ID="Proceed" runat="server" Text="Proceed" />
                     </div>
                 </div>
                 </div>

@@ -88,7 +88,11 @@
 
                                 </Columns>                                
                             </asp:GridView>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.location, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2 FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.imgFilename, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2,  Users.Address + ', ' + Users.barangay + ', ' + Users.city AS Location FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id INNER JOIN Users ON PRODUCT.sellerID = Users.userID WHERE (PRODUCT.sellerID = @sellerId)">
+                                <SelectParameters>
+                                    <asp:SessionParameter Name="sellerId" SessionField="userID" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
                         </div>
                         </div>
                     </div>

@@ -21,12 +21,6 @@ namespace FarmerCooperative
             {
                 Response.Redirect("login.aspx", false);
             }
-            else
-            {
-                SqlDataSource1.SelectCommand = "SELECT PRODUCT.Id, PRODUCT.name, PRODUCT.type, PRODUCT.quantity, PRODUCT.unit, PRODUCT.price, PRODUCT.harvestDate, PRODUCT.expiryDate, PRODUCT.location, PRODUCT.imgPath, PRODUCT.sellerID, TYPE.Id AS Expr1, TYPE.name AS Expr2 FROM PRODUCT INNER JOIN TYPE ON PRODUCT.type = TYPE.Id AND SELLERID = '" + Session["userID"].ToString() + "'";
-                SqlDataSource1.DataBind();
-                productList.DataBind();
-            }
         }
 
         protected void productList_RowCommand(object sender, GridViewCommandEventArgs e)
